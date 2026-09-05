@@ -1,6 +1,6 @@
 <?php
 /**
- * WP Turbo Search: Legacy Widget
+ * Turbo Search: Legacy Widget
  */
 
 defined( 'ABSPATH' ) || exit;

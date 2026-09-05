@@ -10,7 +10,7 @@ use WPTS\Search\Spelling;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * REST API endpoints for WP Turbo Search.
+ * REST API endpoints for Turbo Search.
  */
 class RestSearch {
 

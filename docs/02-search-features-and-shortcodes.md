@@ -1,6 +1,6 @@
 # Chapter 2: Search Features, Shortcodes & Frontend UX
 
-WP Turbo Search delivers an instant, ultra-responsive frontend search experience with sub-10ms query execution, Spotlight-style keyboard navigation, Web Speech voice recognition, category filtering tabs, WooCommerce 1-click cart addition, and full-text document discovery.
+Turbo Search delivers an instant, ultra-responsive frontend search experience with sub-10ms query execution, Spotlight-style keyboard navigation, Web Speech voice recognition, category filtering tabs, WooCommerce 1-click cart addition, and full-text document discovery.
 
 ---
 
@@ -126,7 +126,7 @@ When products appear in search results, visitors see live pricing, sale badges, 
 Visitors and logged-in users automatically see their recent queries and can click a star icon (`★`) to bookmark frequently used searches for quick access.
 
 ### 📄 PDF, Word (.docx), TXT & CSV Full-Text Document Search
-WP Turbo Search extracts and indexes the full text of media attachments and documents attached to posts and products:
+Turbo Search extracts and indexes the full text of media attachments and documents attached to posts and products:
 - **PDF Documents (`.pdf`)**: Parses compressed `/FlateDecode` zlib streams, TJ arrays, and hex strings from modern PDF files with automatic fallback to `pdftotext`.
 - **Microsoft Word Documents (`.docx`)**: Decompresses Word XML streams (`word/document.xml`) to extract paragraphs, lists, and table contents.
 - **Spreadsheets & Data (`.csv`, `.tsv`)**: Indexes raw tabular records, SKUs, and data cells.
@@ -137,7 +137,7 @@ WP Turbo Search extracts and indexes the full text of media attachments and docu
 
 ## 3. CSS Customization & Theme Variables
 
-WP Turbo Search uses standard CSS variables for seamless theme integration. You can override these variables in your child theme's `style.css` or the WordPress Customizer:
+Turbo Search uses standard CSS variables for seamless theme integration. You can override these variables in your child theme's `style.css` or the WordPress Customizer:
 
 ```css
 :root {

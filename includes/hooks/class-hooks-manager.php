@@ -281,7 +281,7 @@ class Manager {
 				'file'     => 'includes/cache/class-cache-manager.php - connect_redis() / connect_memcached()',
 				'params'   => '$driver (string), $message (string)',
 				'desc'     => 'Fires when a Redis or Memcached connection attempt fails. Good hook point for ops alerting.',
-				'example'  => "add_action( 'wpts_cache_connect_error', function ( string \$driver, string \$message ) {\n    wp_mail(\n        get_option( 'admin_email' ),\n        \"WP Turbo Search: {\$driver} connection failed\",\n        \$message\n    );\n}, 10, 2 );",
+				'example'  => "add_action( 'wpts_cache_connect_error', function ( string \$driver, string \$message ) {\n    wp_mail(\n        get_option( 'admin_email' ),\n        \"Turbo Search: {\$driver} connection failed\",\n        \$message\n    );\n}, 10, 2 );",
 			],
 
 			// TYPESENSE

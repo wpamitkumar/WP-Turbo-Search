@@ -4,7 +4,7 @@ namespace WPTS\CLI;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * WP-CLI commands for WP Turbo Search.
+ * WP-CLI commands for Turbo Search.
  *
  * All commands are namespaced under `wp turbo-search`. Run `wp turbo-search` with no
  * arguments (or `wp help wpts`) to see the full list.

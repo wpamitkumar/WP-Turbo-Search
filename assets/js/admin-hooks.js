@@ -1,5 +1,5 @@
 /**
- * WP Turbo Search: Developer Hooks Reference JS
+ * Turbo Search: Developer Hooks Reference JS
  */
 ( function () {
 	'use strict';

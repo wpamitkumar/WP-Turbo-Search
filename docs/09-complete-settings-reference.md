@@ -1,6 +1,6 @@
 # Chapter 9: Complete Settings & Configuration Reference
 
-This chapter contains the complete reference guide for **all 72 settings** available in WP Turbo Search, organized by admin panel tab and category.
+This chapter contains the complete reference guide for **all 72 settings** available in Turbo Search, organized by admin panel tab and category.
 
 ---
 
@@ -291,7 +291,7 @@ Navigate to: **Turbo Search → Search Settings → Frontend & UX**
 ### 7.8 `enable_archive_live_filter`: Live Search Archive Filtering & Query Interception
 * **Option Key**: `wpts_enable_archive_live_filter`
 * **Type**: `bool` | **Default**: `false`
-* **Description**: Enhances standard WordPress theme search archive pages and main queries (`/?s=keyword`) with WP Turbo Search ranked results, with silent, zero-downtime fallback to native WordPress Core search if any search engine server or table is unavailable.
+* **Description**: Enhances standard WordPress theme search archive pages and main queries (`/?s=keyword`) with Turbo Search ranked results, with silent, zero-downtime fallback to native WordPress Core search if any search engine server or table is unavailable.
 
 ---
 

@@ -1,6 +1,6 @@
 # Chapter 8: Complete WP-CLI Command Suite & DevOps Automation Manual
 
-WP Turbo Search provides an enterprise-grade command-line interface (CLI) built directly on the standard WP-CLI framework. The command suite is registered under both the primary `wp turbo-search` namespace and the convenient short alias `wp wpts`.
+Turbo Search provides an enterprise-grade command-line interface (CLI) built directly on the standard WP-CLI framework. The command suite is registered under both the primary `wp turbo-search` namespace and the convenient short alias `wp wpts`.
 
 This manual covers every command, flag, argument, output format, exit code, and production DevOps recipe in exhaustive detail.
 
@@ -459,7 +459,7 @@ Include this snippet in your deployment script (GitHub Actions, GitLab CI, Deplo
 #!/usr/bin/env bash
 set -e
 
-echo "🚀 Post-deployment: Syncing WP Turbo Search..."
+echo "🚀 Post-deployment: Syncing Turbo Search..."
 
 # Ensure database tables exist and are up to date
 wp turbo-search health --path=/var/www/html
@@ -470,7 +470,7 @@ wp turbo-search flush-cache --path=/var/www/html --yes
 # Rebuild search index non-interactively
 wp turbo-search reindex --path=/var/www/html --batch=250 --yes
 
-echo "✅ WP Turbo Search successfully synced!"
+echo "✅ Turbo Search successfully synced!"
 ```
 
 ---
@@ -505,10 +505,10 @@ Monitor search engine uptime and health programmatically:
 HEALTH_JSON=$(wp turbo-search health --path=/var/www/html --format=json 2>/dev/null)
 
 if echo "$HEALTH_JSON" | grep -q '"Status":"PASS"'; then
-    echo "OK - WP Turbo Search is fully operational."
+    echo "OK - Turbo Search is fully operational."
     exit 0
 else
-    echo "CRITICAL - WP Turbo Search health check failed!"
+    echo "CRITICAL - Turbo Search health check failed!"
     echo "$HEALTH_JSON"
     exit 2
 fi

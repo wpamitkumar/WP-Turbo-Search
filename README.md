@@ -1,4 +1,4 @@
-# WP Turbo Search
+# Turbo Search
 
 > Enterprise-grade, instant search platform for WordPress & WooCommerce - powered by MySQL FULLTEXT (free, zero setup), Typesense (high-speed C++ search engine), or Elasticsearch.
 

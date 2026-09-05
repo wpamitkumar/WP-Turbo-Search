@@ -1,12 +1,12 @@
 # Chapter 7: Multisite & Multilingual Architecture
 
-WP Turbo Search includes enterprise multi-tenant support for **WordPress Multisite Networks** and seamless integration with **WPML** and **Polylang**.
+Turbo Search includes enterprise multi-tenant support for **WordPress Multisite Networks** and seamless integration with **WPML** and **Polylang**.
 
 ---
 
 ## 1. WordPress Multisite Cross-Network Search
 
-WP Turbo Search allows visitors to search across individual subsites or query the entire network from a single global search bar.
+Turbo Search allows visitors to search across individual subsites or query the entire network from a single global search bar.
 
 ```
                            ┌─────────────────────────────┐
@@ -45,7 +45,7 @@ wp site list --field=url | xargs -n 1 -I {} wp turbo-search reindex --url={} --y
 
 ## 2. Multilingual Architecture (WPML & Polylang)
 
-WP Turbo Search natively detects and integrates with **WPML** and **Polylang** without requiring add-on plugins.
+Turbo Search natively detects and integrates with **WPML** and **Polylang** without requiring add-on plugins.
 
 ### A. How Multilingual Indexing Works:
 

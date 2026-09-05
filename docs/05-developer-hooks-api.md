@@ -1,6 +1,6 @@
 # Chapter 5: Developer Hooks & Actions API Reference
 
-WP Turbo Search provides an enterprise-grade developer API with 41 verified public hooks and filters covering every phase of document indexing, query transformation, multi-tier zero-downtime fallback, caching, REST endpoints, analytics, and security.
+Turbo Search provides an enterprise-grade developer API with 41 verified public hooks and filters covering every phase of document indexing, query transformation, multi-tier zero-downtime fallback, caching, REST endpoints, analytics, and security.
 
 ---
 
@@ -293,7 +293,7 @@ Fires when a Redis or Memcached connection attempt fails. Good hook point for op
 add_action( 'wpts_cache_connect_error', function ( string $driver, string $message ) {
     wp_mail(
         get_option( 'admin_email' ),
-        "WP Turbo Search: {$driver} connection failed",
+        "Turbo Search: {$driver} connection failed",
         $message
     );
 }, 10, 2 );

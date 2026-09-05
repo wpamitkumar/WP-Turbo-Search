@@ -2,14 +2,14 @@
 
 ## 1. Real-Time Instant Sync (0ms Delay)
 
-WP Turbo Search operates on an **event-driven incremental architecture**:
+Turbo Search operates on an **event-driven incremental architecture**:
 
 ```
 [WordPress Admin / WooCommerce / REST]
                │
                ▼ (save_post, edit_attachment, delete_post)
  ┌─────────────────────────────────────────────────────────────┐
- │ WP Turbo Search Hook Interceptor                            │
+ │ Turbo Search Hook Interceptor                            │
  │  1. Builds document payload (< 1ms)                        │
  │  2. Extracts PDF/DOCX text, taxonomies, comments, meta     │
  │  3. Upserts/deletes directly in search index & driver       │
@@ -23,7 +23,7 @@ WP Turbo Search operates on an **event-driven incremental architecture**:
 
 ## 2. Document & File Attachment Full-Text Extraction Engine
 
-WP Turbo Search features a native, pure-PHP document extraction engine that extracts and indexes full-text content from uploaded attachments and documents attached to posts and products.
+Turbo Search features a native, pure-PHP document extraction engine that extracts and indexes full-text content from uploaded attachments and documents attached to posts and products.
 
 ### A. How It Works (Extraction & Search Lifecycle)
 
@@ -102,7 +102,7 @@ WP Turbo Search features a native, pure-PHP document extraction engine that extr
 When users upload media via **Media → Add New** or attach documents inside Gutenberg / Classic Editor:
 1. WordPress uploads the file and creates an `attachment` post type with post status `inherit`.
 2. WordPress saves the file location in postmeta `_wp_attached_file` and fires `wp_update_attachment_metadata` and `added_post_meta`.
-3. WP Turbo Search intercepts these events immediately, locates the file on disk via `get_attached_file($post_id)`, extracts the full document text, and writes the indexed document to the active search engine.
+3. Turbo Search intercepts these events immediately, locates the file on disk via `get_attached_file($post_id)`, extracts the full document text, and writes the indexed document to the active search engine.
 4. When visitors search for words contained inside the document, the search result includes:
    * Document title.
    * Keyword-in-Context (KWIC) highlighted snippet showing the exact sentence matching the search term.
@@ -129,7 +129,7 @@ For websites that import content in bulk via external feeds, WP All Import, or R
 
 ## 4. High-Performance Multi-Tier Caching
 
-WP Turbo Search achieves **sub-5ms search speeds** via a 4-tier caching architecture:
+Turbo Search achieves **sub-5ms search speeds** via a 4-tier caching architecture:
 
 ```
 [User Types in Searchbar]
@@ -164,7 +164,7 @@ WP Turbo Search achieves **sub-5ms search speeds** via a 4-tier caching architec
 
 ## 5. Multi-Tier Server & Dependency Fallback (Zero Downtime Guarantee)
 
-WP Turbo Search incorporates a **fail-safe degradation architecture**. If an external cluster, memory caching daemon, custom database table, or third-party plugin is temporarily unavailable or misconfigured, search automatically degrades to native WordPress Core functionality without raising PHP errors or interrupting site visitors:
+Turbo Search incorporates a **fail-safe degradation architecture**. If an external cluster, memory caching daemon, custom database table, or third-party plugin is temporarily unavailable or misconfigured, search automatically degrades to native WordPress Core functionality without raising PHP errors or interrupting site visitors:
 
 ```
 [ User Search Request ]
@@ -201,7 +201,7 @@ WP Turbo Search incorporates a **fail-safe degradation architecture**. If an ext
    * Cache read/write exceptions are caught silently, preventing white screens.
 
 3. **Standard WordPress Query Interception (`pre_get_posts`)**:
-   * When frontend search query interception is active, WP Turbo Search enhances native theme archive search queries (`/?s=keyword`).
+   * When frontend search query interception is active, Turbo Search enhances native theme archive search queries (`/?s=keyword`).
    * If any server or database issue occurs, the interceptor silently catches the error and lets standard WordPress Core search run completely uninterrupted.
 
 4. **Third-Party Dependency Protection**:

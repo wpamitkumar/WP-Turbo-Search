@@ -289,7 +289,7 @@ final class Core {
 	}
 
 	/**
-	 * Intercept standard WordPress search queries with WP Turbo Search.
+	 * Intercept standard WordPress search queries with Turbo Search.
 	 * If the search engine or external servers encounter any error, it
 	 * gracefully does nothing and allows WordPress Core to run its native search.
 	 */

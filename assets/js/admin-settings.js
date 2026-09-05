@@ -1,5 +1,5 @@
 /**
- * WP Turbo Search: Admin Settings JS
+ * Turbo Search: Admin Settings JS
  * Manages tab switching, synonyms CRUD, field weight sliders, and connection test buttons.
  */
 ( function () {

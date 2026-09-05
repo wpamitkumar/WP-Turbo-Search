@@ -1,5 +1,5 @@
 /**
- * WP Turbo Search: Accessible Instant Search v1.0.0
+ * Turbo Search: Accessible Instant Search v1.0.0
  * Fully compliant with WAI-ARIA Combobox 1.2 & Apple VoiceOver screen reader.
  * Features: Command+K Spotlight Modal, Multi-Tab Category Dropdown, WooCommerce
  * Instant Add-to-Cart, ARIA live announcements, and CTR telemetry.

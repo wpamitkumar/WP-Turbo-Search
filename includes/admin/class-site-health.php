@@ -4,7 +4,7 @@ namespace WPTS\Admin;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Integrates WP Turbo Search status checks with WordPress Site Health (Tools → Site Health).
+ * Integrates Turbo Search status checks with WordPress Site Health (Tools → Site Health).
  */
 class SiteHealth {
 

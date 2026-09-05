@@ -77,11 +77,11 @@ Upon activation, the plugin automatically creates optimized custom database tabl
 
 ## 4. Pluggable Search Engine Driver Setup
 
-WP Turbo Search features a modular driver architecture. You can switch engines at any time without data loss:
+Turbo Search features a modular driver architecture. You can switch engines at any time without data loss:
 
 ```
                       ┌─────────────────────────────────────┐
-                      │          WP Turbo Search            │
+                      │          Turbo Search            │
                       └──────────────────┬──────────────────┘
                                          │
                ┌─────────────────────────┼─────────────────────────┐
@@ -150,7 +150,7 @@ docker run -d -p 8108:8108 -v /tmp/typesense-data:/data \
 
 ## 5. Multi-Tier Query Cache Driver Setup
 
-To guarantee **< 2ms response times** under heavy traffic, WP Turbo Search provides a 4-tier query cache:
+To guarantee **< 2ms response times** under heavy traffic, Turbo Search provides a 4-tier query cache:
 
 1. Navigate to **Turbo Search → Cache Manager** (`/wp-admin/admin.php?page=wpts-cache`).
 2. Select your **Cache Driver**:
@@ -179,7 +179,7 @@ Or view the interactive diagnostics report under **Turbo Search → Site Health*
 
 ## 7. WordPress VIP Coding Standards & Quality Compliance
 
-WP Turbo Search is developed according to **Automattic / WordPress VIP Coding Standards (`WordPressVIPMinimum`)** and WordPress Core Standards:
+Turbo Search is developed according to **Automattic / WordPress VIP Coding Standards (`WordPressVIPMinimum`)** and WordPress Core Standards:
 * **`phpcs.xml.dist` Included**: The repository includes an official PHP_CodeSniffer configuration file configured for CI/CD, local linting, and automated code review.
 * **Strict Superglobal Unslashing**: All `$_GET`, `$_POST`, and `$_REQUEST` values are unslashed with `wp_unslash()` prior to sanitization (`sanitize_text_field`, `sanitize_key`, `absint`).
 * **Bounded Remote Requests**: All HTTP API calls define explicit timeouts (`timeout => 5` to `timeout => 15`) preventing web server thread starvation.

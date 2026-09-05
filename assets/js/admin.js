@@ -1,5 +1,5 @@
 /**
- * WP Turbo Search: Global Admin JS
+ * Turbo Search: Global Admin JS
  */
 ( function ( $ ) {
 	'use strict';

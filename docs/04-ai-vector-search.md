@@ -1,6 +1,6 @@
 # Chapter 4: Hybrid Semantic AI Vector Search
 
-WP Turbo Search features native **Hybrid Semantic AI Vector Search**, combining the speed and exact precision of keyword fulltext search with the conceptual intelligence of deep AI embeddings.
+Turbo Search features native **Hybrid Semantic AI Vector Search**, combining the speed and exact precision of keyword fulltext search with the conceptual intelligence of deep AI embeddings.
 
 ---
 
@@ -10,13 +10,13 @@ WP Turbo Search features native **Hybrid Semantic AI Vector Search**, combining 
 | :--- | :--- | :--- | :--- |
 | **Traditional Lexical (Fulltext)** | *"cordless lawn trimmer"* | Matches only articles/products containing the exact words *"cordless"*, *"lawn"*, or *"trimmer"*. | Misses synonyms, intent, and colloquial phrases like *"battery weed whacker"*. |
 | **Pure Vector (AI Embeddings)** | *"how to tidy overgrown grass without cords"* | Understands intent and matches *"Battery-Powered Weed Eater"*. | Slower on large databases, struggles with exact SKU numbers or model codes (`MBP-M3-16`). |
-| **Hybrid Search (WP Turbo Search)** | *"how to tidy overgrown grass without cords"* | **Combines both!** Instant keyword scoring + AI semantic reranking. | **Best of both worlds**: Sub-10ms response, exact SKU matching, and deep semantic intelligence. |
+| **Hybrid Search (Turbo Search)** | *"how to tidy overgrown grass without cords"* | **Combines both!** Instant keyword scoring + AI semantic reranking. | **Best of both worlds**: Sub-10ms response, exact SKU matching, and deep semantic intelligence. |
 
 ---
 
 ## 2. Mathematical Hybrid Reranking Formula
 
-WP Turbo Search uses **Reciprocal Rank Fusion (RRF)** and normalized vector cosine similarity to merge results:
+Turbo Search uses **Reciprocal Rank Fusion (RRF)** and normalized vector cosine similarity to merge results:
 
 $$\text{FinalScore} = (1 - w) \times \text{FulltextScore}_{\text{norm}} + w \times \text{CosineSimilarity}(\vec{Q}, \vec{D})$$
 
@@ -85,7 +85,7 @@ ollama pull nomic-embed-text
 ollama serve
 ```
 
-  2. In WP Turbo Search, set **Provider** to `Local Ollama`.
+  2. In Turbo Search, set **Provider** to `Local Ollama`.
   3. Enter the Endpoint URL: `http://localhost:11434/api/embeddings` (or server IP).
   4. Set Model Name: `nomic-embed-text`.
   5. Click **Test AI Connection**.

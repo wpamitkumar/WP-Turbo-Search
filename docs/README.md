@@ -1,6 +1,6 @@
-# WP Turbo Search: Complete Documentation & Technical Reference
+# Turbo Search: Complete Documentation & Technical Reference
 
-Welcome to the official technical documentation for **WP Turbo Search (v1.0.0)** - the enterprise-grade, high-performance search engine and discovery platform built natively for WordPress and WooCommerce.
+Welcome to the official technical documentation for **Turbo Search (v1.0.0)** - the enterprise-grade, high-performance search engine and discovery platform built natively for WordPress and WooCommerce.
 
 ---
 

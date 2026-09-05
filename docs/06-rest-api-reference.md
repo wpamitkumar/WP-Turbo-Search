@@ -1,6 +1,6 @@
 # Chapter 6: REST API Reference & Endpoint Specification
 
-All WP Turbo Search REST API endpoints are registered under the `/wp-json/wpts/v1/` namespace.
+All Turbo Search REST API endpoints are registered under the `/wp-json/wpts/v1/` namespace.
 
 ---
 
@@ -120,7 +120,7 @@ All administrative routes require authentication. Include the `X-WP-Nonce` heade
 
 ## 4. Error Responses & Status Codes
 
-WP Turbo Search returns standard HTTP status codes and structured JSON errors:
+Turbo Search returns standard HTTP status codes and structured JSON errors:
 
 ```json
 {

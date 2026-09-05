@@ -1,5 +1,5 @@
 /**
- * WP Turbo Search: Modern React Admin SPA Application
+ * Turbo Search: Modern React Admin SPA Application
  * Built with WordPress wp.element (React) and WP REST API.
  */
 ( function () {
@@ -7,7 +7,7 @@
 
 	var wpEl = window.wp && window.wp.element;
 	if ( ! wpEl ) {
-		console.error( 'WP Turbo Search: wp.element is not available.' );
+		console.error( 'Turbo Search: wp.element is not available.' );
 		return;
 	}
 
@@ -182,7 +182,7 @@
 				setHooks( res[3] && res[3].hooks ? res[3].hooks : [] );
 				setLoading( false );
 			} ).catch( function ( err ) {
-				console.error( 'WP Turbo Search loadConfig error:', err );
+				console.error( 'Turbo Search loadConfig error:', err );
 				setLoading( false );
 				setError( ( err && err.message ) || 'Failed to load configuration via REST API.' );
 				showToast( 'Failed to load configuration.', 'error' );
@@ -233,13 +233,13 @@
 		if ( loading ) {
 			return createElement( 'div', { style: { padding: 40, textAlign: 'center', color: '#64748b' } },
 				createElement( 'span', { className: 'spinner is-active', style: { float: 'none', margin: '0 auto 10px' } } ),
-				createElement( 'p', null, 'Loading WP Turbo Search settings…' )
+				createElement( 'p', null, 'Loading Turbo Search settings…' )
 			);
 		}
 
 		if ( error ) {
 			return createElement( 'div', { className: 'notice notice-error', style: { padding: 20, margin: '20px 0' } },
-				createElement( 'p', { style: { fontWeight: 600 } }, '⚠️ Error loading WP Turbo Search configuration: ' + error ),
+				createElement( 'p', { style: { fontWeight: 600 } }, '⚠️ Error loading Turbo Search configuration: ' + error ),
 				createElement( 'button', { type: 'button', className: 'button button-primary', onClick: loadConfig }, 'Retry Loading' )
 			);
 		}
@@ -278,7 +278,7 @@
 			{ id: 'flush',     label: '🧹 Flush Cache' },
 		];
 
-		var pageTitle = '🔍 WP Turbo Search';
+		var pageTitle = '🔍 Turbo Search';
 		if ( currentPage === 'wpts-settings' ) pageTitle = '⚙️ Search Settings';
 		else if ( currentPage === 'wpts-tracking' ) pageTitle = '📊 Search Tracking & Analytics';
 		else if ( currentPage === 'wpts-cache' ) pageTitle = '⚡ Cache & Performance';
@@ -2471,7 +2471,7 @@
 				),
 				createElement( 'div', null,
 					createElement( 'h4', null, 'Import Configuration' ),
-					createElement( 'p', { style: { fontSize: 13, color: '#64748b' } }, 'Restore configuration from a previously exported WP Turbo Search JSON file.' ),
+					createElement( 'p', { style: { fontSize: 13, color: '#64748b' } }, 'Restore configuration from a previously exported Turbo Search JSON file.' ),
 					createElement( 'form', { method: 'post', action: cfg.admin_post_url, encType: 'multipart/form-data' },
 						createElement( 'input', { type: 'hidden', name: 'action', value: 'wpts_import_settings' } ),
 						createElement( 'input', { type: 'hidden', name: 'wpts_import_nonce', value: cfg.import_nonce } ),
@@ -2541,7 +2541,7 @@
 			createElement( 'div', { style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 10 } },
 				createElement( 'div', null,
 					createElement( 'h3', { className: 'wpts-app-panel__title', style: { margin: 0 } }, '🔌 Complete Developer Hooks & Filters Reference' ),
-					createElement( 'p', { className: 'wpts-app-panel__desc', style: { margin: '4px 0 0' } }, 'Every verified public filter and action hook available in WP Turbo Search.' )
+					createElement( 'p', { className: 'wpts-app-panel__desc', style: { margin: '4px 0 0' } }, 'Every verified public filter and action hook available in Turbo Search.' )
 				),
 				createElement( 'span', { className: 'wpts-pill wpts-pill--blue' }, filtered.length + ' Hooks Found' )
 			),

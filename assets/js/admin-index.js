@@ -1,5 +1,5 @@
 /**
- * WP Turbo Search: Admin Index Manager JS
+ * Turbo Search: Admin Index Manager JS
  * Chunked re-index runner with progress bar and engine status widgets.
  */
 ( function () {

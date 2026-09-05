@@ -16,7 +16,7 @@ class SettingsExporter {
 		}
 
 		$export_data = [
-			'plugin'     => 'WP Turbo Search',
+			'plugin'     => 'Turbo Search',
 			'version'    => WPTS_VERSION,
 			'exported_at'=> current_time( 'mysql' ),
 			'settings'   => Settings::get_all(),

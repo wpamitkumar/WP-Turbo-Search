@@ -1,5 +1,5 @@
 /**
- * WP Turbo Search: Gutenberg Block Editor Script
+ * Turbo Search: Gutenberg Block Editor Script
  *
  * Registered manually in PHP with correct wp-blocks, wp-element,
  * wp-block-editor, wp-components, wp-i18n dependencies.
@@ -9,7 +9,7 @@
 	'use strict';
 
 	if ( ! blocks || ! blocks.registerBlockType ) {
-		console.warn( 'WP Turbo Search: wp.blocks not available.' );
+		console.warn( 'Turbo Search: wp.blocks not available.' );
 		return;
 	}
 
@@ -314,7 +314,7 @@
 						)
 					),
 					el( 'p', { className: 'wpts-editor-preview__hint' },
-						'\ud83d\udd0d WP Turbo Search \u2014 live on the front end'
+						'\ud83d\udd0d Turbo Search \u2014 live on the front end'
 					)
 				)
 			)

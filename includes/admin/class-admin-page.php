@@ -4,7 +4,7 @@ namespace WPTS\Admin;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Main Admin Controller for WP Turbo Search.
+ * Main Admin Controller for Turbo Search.
  * Enqueues React dependencies (wp-element, wp-components, wp-api-fetch) and mounts the React SPA.
  */
 class Page {
@@ -165,7 +165,7 @@ class Page {
 			<div id="wpts-admin-root">
 				<div style="padding: 40px; text-align: center; color: #64748b;">
 					<span class="spinner is-active" style="float: none; margin: 0 auto 10px;"></span>
-					<p><?php esc_html_e( 'Loading WP Turbo Search React Application…', 'turbo-search' ); ?></p>
+					<p><?php esc_html_e( 'Loading Turbo Search React Application…', 'turbo-search' ); ?></p>
 				</div>
 			</div>
 		</div>

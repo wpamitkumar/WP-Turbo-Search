@@ -33,7 +33,7 @@ class Network {
 		$sites = get_sites( [ 'number' => 0 ] );
 		?>
 		<div class="wrap wpts-wrap">
-			<h1><?php esc_html_e( 'WP Turbo Search: Network', 'turbo-search' ); ?></h1>
+			<h1><?php esc_html_e( 'Turbo Search: Network', 'turbo-search' ); ?></h1>
 
 			<h2><?php esc_html_e( 'Sites in this Network', 'turbo-search' ); ?></h2>
 			<table class="widefat striped">

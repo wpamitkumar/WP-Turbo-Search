@@ -4,7 +4,7 @@ namespace WPTS\Admin;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Centralised settings store for WP Turbo Search.
+ * Centralised settings store for Turbo Search.
  * Manages all option keys, typed casting, defaults, and sanitization.
  */
 class Settings {

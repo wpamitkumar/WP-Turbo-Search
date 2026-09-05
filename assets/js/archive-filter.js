@@ -1,5 +1,5 @@
 /**
- * WP Turbo Search: Instant Archive / Category Filter
+ * Turbo Search: Instant Archive / Category Filter
  * Filters server-rendered archive posts live in the DOM as you type.
  */
 ( function () {

@@ -4,7 +4,7 @@ namespace WPTS\Universal;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Universal utility methods used across WP Turbo Search subsystems.
+ * Universal utility methods used across Turbo Search subsystems.
  */
 class Utils {
 
