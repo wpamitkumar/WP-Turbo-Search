@@ -10,7 +10,6 @@
 phpcs.xml.dist
 
 # Developer Documentation & Repo Assets
-docs/
 .wordpress-org/
 scratch/
 

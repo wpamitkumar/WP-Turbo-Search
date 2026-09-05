@@ -223,7 +223,7 @@ class CacheManager {
 				$note      = $connected ? 'Memcached connected' : 'Memcached connection failed';
 				break;
 			case self::DRIVER_WP_CACHE:
-				$note = wp_using_ext_object_cache() ? 'WP Object Cache (persistent)' : 'WP Object Cache (in-memory)';
+				$note = $this->is_using_ext_object_cache() ? 'WP Object Cache (persistent)' : 'WP Object Cache (in-memory)';
 				break;
 			case self::DRIVER_TRANSIENT:
 				$note = 'WordPress Transients (Database backed)';
@@ -241,6 +241,14 @@ class CacheManager {
 		];
 	}
 
+	private function is_using_ext_object_cache(): bool {
+		if ( function_exists( 'wp_using_ext_object_cache' ) ) {
+			return (bool) wp_using_ext_object_cache();
+		}
+		global $_wp_using_ext_object_cache;
+		return ! empty( $_wp_using_ext_object_cache );
+	}
+
 	private function resolve_driver( string $requested ): string {
 		if ( self::DRIVER_NONE === $requested ) {
 			return self::DRIVER_NONE;
@@ -253,7 +261,7 @@ class CacheManager {
 			if ( extension_loaded( 'memcached' ) && ( defined( 'WPTS_MEMCACHED_HOST' ) || ! empty( $this->settings['memcached_host'] ) ) ) {
 				return self::DRIVER_MEMCACHED;
 			}
-			if ( wp_using_ext_object_cache() ) {
+			if ( $this->is_using_ext_object_cache() ) {
 				return self::DRIVER_WP_CACHE;
 			}
 			return self::DRIVER_TRANSIENT;
@@ -261,11 +269,11 @@ class CacheManager {
 
 		// Graceful degradation if requested driver extension is missing
 		if ( self::DRIVER_REDIS === $requested && ! extension_loaded( 'redis' ) ) {
-			return wp_using_ext_object_cache() ? self::DRIVER_WP_CACHE : self::DRIVER_TRANSIENT;
+			return $this->is_using_ext_object_cache() ? self::DRIVER_WP_CACHE : self::DRIVER_TRANSIENT;
 		}
 
 		if ( self::DRIVER_MEMCACHED === $requested && ! extension_loaded( 'memcached' ) ) {
-			return wp_using_ext_object_cache() ? self::DRIVER_WP_CACHE : self::DRIVER_TRANSIENT;
+			return $this->is_using_ext_object_cache() ? self::DRIVER_WP_CACHE : self::DRIVER_TRANSIENT;
 		}
 
 		return $requested;

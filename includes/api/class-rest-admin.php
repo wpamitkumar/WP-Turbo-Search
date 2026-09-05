@@ -734,7 +734,19 @@ class RestAdmin {
 	}
 
 	public function get_docs(): \WP_REST_Response {
-		$docs_dir = WPTS_DIR . 'docs/';
+		$candidate_dirs = [
+			defined( 'WPTS_DIR' ) ? wp_normalize_path( WPTS_DIR ) . 'docs/' : '',
+			wp_normalize_path( dirname( __DIR__, 2 ) ) . '/docs/',
+		];
+
+		$docs_dir = '';
+		foreach ( $candidate_dirs as $dir ) {
+			if ( ! empty( $dir ) && is_dir( $dir ) ) {
+				$docs_dir = trailingslashit( $dir );
+				break;
+			}
+		}
+
 		$files = [
 			'README.md'                          => [ 'id' => 'readme',      'title' => '⚡ Overview & Quick Start' ],
 			'01-installation-and-setup.md'       => [ 'id' => 'setup',       'title' => '01. Installation & Engines' ],
@@ -750,8 +762,22 @@ class RestAdmin {
 
 		$docs = [];
 		foreach ( $files as $filename => $meta ) {
-			$path = $docs_dir . $filename;
-			$raw_content = file_exists( $path ) ? (string) file_get_contents( $path ) : '';
+			$raw_content = '';
+			if ( ! empty( $docs_dir ) ) {
+				$path = $docs_dir . $filename;
+				if ( file_exists( $path ) && is_readable( $path ) ) {
+					$raw_content = (string) file_get_contents( $path );
+				}
+			}
+
+			// Resilient fallback if markdown file is missing on disk
+			if ( empty( trim( $raw_content ) ) ) {
+				$raw_content = "# " . $meta['title'] . "\n\n" .
+					"> ⚠️ **Documentation Content Unavailable Locally**\n\n" .
+					"The file `" . $filename . "` could not be loaded from your server's `docs/` folder.\n\n" .
+					"Please verify that the `docs/` directory is present in your plugin directory (`wp-turbo-search/docs/`).";
+			}
+
 			$docs[] = [
 				'id'       => $meta['id'],
 				'title'    => $meta['title'],

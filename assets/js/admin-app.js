@@ -58,7 +58,13 @@
 		var defaultTab  = cfg.initial_tab || (
 			currentPage === 'wpts-settings' ? 'general' : (
 				currentPage === 'wpts-tracking' ? 'searches' : (
-					currentPage === 'wpts-cache' ? 'general' : 'dashboard'
+					currentPage === 'wpts-cache' ? 'general' : (
+						currentPage === 'wpts-docs' ? 'docs' : (
+							currentPage === 'wpts-hooks' ? 'hooks' : (
+								currentPage === 'wpts-index' ? 'indexer' : 'dashboard'
+							)
+						)
+					)
 				)
 			)
 		);
@@ -3021,7 +3027,7 @@
 		}, [] );
 
 		var currentDoc = docs.find( function ( d ) { return d.id === activeId; } ) || docs[0] || {};
-		var currentIndex = docs.findIndex( function ( d ) { return d.id === activeId; } );
+		var currentIndex = docs.findIndex( function ( d ) { return d.id === ( currentDoc.id || activeId ); } );
 
 		var navigateToDoc = function ( docId ) {
 			setActiveId( docId );
@@ -3252,7 +3258,15 @@
 				createElement( 'div', { className: 'wpts-app-panel', style: { minHeight: 600, padding: 28 } },
 					loading ? createElement( 'div', { style: { padding: 40, textAlign: 'center', color: '#64748b' } }, 'Loading documentation…' ) :
 					createElement( 'div', null,
-						renderMarkdown( currentDoc.content ),
+						( currentDoc && currentDoc.content && currentDoc.content.trim().length > 0 ) ?
+							renderMarkdown( currentDoc.content ) :
+							createElement( 'div', { className: 'wpts-doc-empty-state', style: { padding: '40px 24px', textAlign: 'center', background: '#f8fafc', border: '1px dashed #cbd5e1', borderRadius: '8px', margin: '20px 0' } },
+								createElement( 'div', { style: { fontSize: '36px', marginBottom: '12px' } }, '📖' ),
+								createElement( 'h3', { style: { margin: '0 0 8px', color: '#1e293b', fontSize: '18px', fontWeight: 600 } }, 'Documentation content unavailable' ),
+								createElement( 'p', { style: { color: '#64748b', maxWidth: '520px', margin: '0 auto', lineHeight: 1.5 } },
+									'The file "' + ( currentDoc && currentDoc.filename ? currentDoc.filename : 'documentation file' ) + '" could not be loaded from your server. Please verify that the "docs/" folder exists in your plugin directory.'
+								)
+							),
 
 						// Next / Previous Navigation Footer
 						createElement( 'div', { style: { display: 'flex', justifyContent: 'space-between', marginTop: 40, paddingTop: 20, borderTop: '1px solid #e2e8f0' } },

@@ -151,6 +151,7 @@ class Page {
 			case 'wpts-cache':    return sanitize_key( wp_unslash( $_GET['tab'] ?? 'general' ) );
 			case 'wpts-index':    return 'indexer';
 			case 'wpts-hooks':    return 'hooks';
+			case 'wpts-docs':     return 'docs';
 			default:              return 'dashboard';
 		}
 	}
