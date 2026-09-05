@@ -12,13 +12,13 @@ class Network {
 		if ( ! is_network_admin() ) return;
 
 		add_action( 'network_admin_menu', [ $this, 'register_network_menu' ] );
-		// admin_post_* handlers registered in wp-turbo-search.php on init priority 1
+		// admin_post_* handlers registered in turbo-search.php on init priority 1
 	}
 
 	public function register_network_menu(): void {
 		add_menu_page(
-			__( 'Turbo Search Network', 'wp-turbo-search' ),
-			__( 'Turbo Search', 'wp-turbo-search' ),
+			__( 'Turbo Search Network', 'turbo-search' ),
+			__( 'Turbo Search', 'turbo-search' ),
 			'manage_network_options',
 			'wpts-network',
 			[ $this, 'render_network_page' ],
@@ -33,16 +33,16 @@ class Network {
 		$sites = get_sites( [ 'number' => 0 ] );
 		?>
 		<div class="wrap wpts-wrap">
-			<h1><?php esc_html_e( 'WP Turbo Search: Network', 'wp-turbo-search' ); ?></h1>
+			<h1><?php esc_html_e( 'WP Turbo Search: Network', 'turbo-search' ); ?></h1>
 
-			<h2><?php esc_html_e( 'Sites in this Network', 'wp-turbo-search' ); ?></h2>
+			<h2><?php esc_html_e( 'Sites in this Network', 'turbo-search' ); ?></h2>
 			<table class="widefat striped">
 				<thead>
 					<tr>
-						<th><?php esc_html_e( 'Site', 'wp-turbo-search' ); ?></th>
-						<th><?php esc_html_e( 'Blog ID', 'wp-turbo-search' ); ?></th>
-						<th><?php esc_html_e( 'DB Version', 'wp-turbo-search' ); ?></th>
-						<th><?php esc_html_e( 'Actions', 'wp-turbo-search' ); ?></th>
+						<th><?php esc_html_e( 'Site', 'turbo-search' ); ?></th>
+						<th><?php esc_html_e( 'Blog ID', 'turbo-search' ); ?></th>
+						<th><?php esc_html_e( 'DB Version', 'turbo-search' ); ?></th>
+						<th><?php esc_html_e( 'Actions', 'turbo-search' ); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -58,7 +58,7 @@ class Network {
 							<td>
 								<a href="<?php echo esc_url( get_admin_url( $site->blog_id, 'admin.php?page=wpts-index' ) ); ?>"
 								   class="button button-small">
-									<?php esc_html_e( 'Manage Index', 'wp-turbo-search' ); ?>
+									<?php esc_html_e( 'Manage Index', 'turbo-search' ); ?>
 								</a>
 							</td>
 						</tr>
@@ -71,8 +71,8 @@ class Network {
 					network_admin_url( 'admin-post.php?action=wpts_network_reindex_all' ),
 					'wpts_network_reindex'
 				) ); ?>" class="button button-primary"
-				   onclick="return confirm('<?php esc_attr_e( 'Re-index all sites? This may take a while.', 'wp-turbo-search' ); ?>')">
-					<?php esc_html_e( 'Re-index All Sites', 'wp-turbo-search' ); ?>
+				   onclick="return confirm('<?php esc_attr_e( 'Re-index all sites? This may take a while.', 'turbo-search' ); ?>')">
+					<?php esc_html_e( 'Re-index All Sites', 'turbo-search' ); ?>
 				</a>
 			</p>
 		</div>

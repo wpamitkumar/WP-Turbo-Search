@@ -59,7 +59,7 @@ add_action( 'wp_ajax_nopriv_wpts_add_to_cart', 'wpts_ajax_add_to_cart_handler' )
 
 function wpts_ajax_add_to_cart_handler(): void {
 	if ( ! check_ajax_referer( 'wpts_search', 'nonce', false ) ) {
-		wp_send_json_error( [ 'message' => __( 'Security check failed.', 'wp-turbo-search' ) ], 403 );
+		wp_send_json_error( [ 'message' => __( 'Security check failed.', 'turbo-search' ) ], 403 );
 		return;
 	}
 
@@ -67,12 +67,12 @@ function wpts_ajax_add_to_cart_handler(): void {
 	$quantity   = max( 1, absint( wp_unslash( $_REQUEST['quantity'] ?? 1 ) ) );
 
 	if ( ! $product_id ) {
-		wp_send_json_error( [ 'message' => __( 'Invalid product ID.', 'wp-turbo-search' ) ], 400 );
+		wp_send_json_error( [ 'message' => __( 'Invalid product ID.', 'turbo-search' ) ], 400 );
 		return;
 	}
 
 	if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
-		wp_send_json_error( [ 'message' => __( 'WooCommerce is not active.', 'wp-turbo-search' ) ], 400 );
+		wp_send_json_error( [ 'message' => __( 'WooCommerce is not active.', 'turbo-search' ) ], 400 );
 		return;
 	}
 
@@ -99,7 +99,7 @@ function wpts_ajax_add_to_cart_handler(): void {
 	} else {
 		wp_send_json_error( [
 			'error'       => true,
-			'message'     => __( 'Could not add product to cart.', 'wp-turbo-search' ),
+			'message'     => __( 'Could not add product to cart.', 'turbo-search' ),
 			'product_url' => get_permalink( $product_id ),
 		], 400 );
 	}
@@ -110,44 +110,44 @@ function wpts_ajax_add_to_cart_handler(): void {
 add_action( 'wp_ajax_wpts_save_synonym', function (): void {
 	check_ajax_referer( 'wpts_admin', 'nonce' );
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_send_json_error( __( 'Forbidden', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'Forbidden', 'turbo-search' ) );
 	}
 
 	$words = sanitize_text_field( wp_unslash( $_POST['words'] ?? '' ) );
 	$id    = absint( wp_unslash( $_POST['id'] ?? 0 ) );
 
 	if ( '' === $words ) {
-		wp_send_json_error( __( 'Synonym words cannot be empty.', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'Synonym words cannot be empty.', 'turbo-search' ) );
 	}
 
 	$ok = Synonyms::save_custom_synonym( $words, $id );
 	if ( $ok ) {
-		wp_send_json_success( [ 'message' => __( 'Synonym saved!', 'wp-turbo-search' ), 'synonyms' => Synonyms::get_custom_synonyms() ] );
+		wp_send_json_success( [ 'message' => __( 'Synonym saved!', 'turbo-search' ), 'synonyms' => Synonyms::get_custom_synonyms() ] );
 	} else {
-		wp_send_json_error( __( 'Could not save synonym.', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'Could not save synonym.', 'turbo-search' ) );
 	}
 } );
 
 add_action( 'wp_ajax_wpts_delete_synonym', function (): void {
 	check_ajax_referer( 'wpts_admin', 'nonce' );
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_send_json_error( __( 'Forbidden', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'Forbidden', 'turbo-search' ) );
 	}
 
 	$id = absint( wp_unslash( $_POST['id'] ?? 0 ) );
 	if ( $id <= 0 ) {
-		wp_send_json_error( __( 'Invalid ID.', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'Invalid ID.', 'turbo-search' ) );
 	}
 
 	Synonyms::delete_custom_synonym( $id );
-	wp_send_json_success( [ 'message' => __( 'Synonym deleted.', 'wp-turbo-search' ) ] );
+	wp_send_json_success( [ 'message' => __( 'Synonym deleted.', 'turbo-search' ) ] );
 } );
 
 // AJAX: Live dashboard stats
 add_action( 'wp_ajax_wpts_live_stats', function (): void {
 	check_ajax_referer( 'wpts_admin', 'nonce' );
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_send_json_error( __( 'Forbidden', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'Forbidden', 'turbo-search' ) );
 	}
 
 	global $wpdb;
@@ -216,7 +216,7 @@ add_action( 'wp_ajax_wpts_live_stats', function (): void {
 add_action( 'wp_ajax_wpts_typesense_status', function (): void {
 	check_ajax_referer( 'wpts_admin', 'nonce' );
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_send_json_error( __( 'Forbidden', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'Forbidden', 'turbo-search' ) );
 	}
 
 	$settings  = \WPTS\Admin\Settings::get_all();
@@ -228,7 +228,7 @@ add_action( 'wp_ajax_wpts_typesense_status', function (): void {
 add_action( 'wp_ajax_wpts_elasticsearch_status', function (): void {
 	check_ajax_referer( 'wpts_admin', 'nonce' );
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_send_json_error( __( 'Forbidden', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'Forbidden', 'turbo-search' ) );
 	}
 
 	$settings = \WPTS\Admin\Settings::get_all();
@@ -240,7 +240,7 @@ add_action( 'wp_ajax_wpts_elasticsearch_status', function (): void {
 add_action( 'wp_ajax_wpts_typesense_flush', function (): void {
 	check_ajax_referer( 'wpts_admin', 'nonce' );
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_send_json_error( __( 'Forbidden', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'Forbidden', 'turbo-search' ) );
 	}
 
 	$settings  = \WPTS\Admin\Settings::get_all();
@@ -249,9 +249,9 @@ add_action( 'wp_ajax_wpts_typesense_flush', function (): void {
 	\WPTS\Core::instance()->get_engine()->flush_all();
 
 	if ( $success ) {
-		wp_send_json_success( [ 'message' => __( 'Typesense index cleared.', 'wp-turbo-search' ) ] );
+		wp_send_json_success( [ 'message' => __( 'Typesense index cleared.', 'turbo-search' ) ] );
 	} else {
-		wp_send_json_error( __( 'Could not flush Typesense.', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'Could not flush Typesense.', 'turbo-search' ) );
 	}
 } );
 
@@ -259,7 +259,7 @@ add_action( 'wp_ajax_wpts_typesense_flush', function (): void {
 add_action( 'wp_ajax_wpts_reindex_chunk', function (): void {
 	check_ajax_referer( 'wpts_admin', 'nonce' );
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_send_json_error( __( 'Forbidden', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'Forbidden', 'turbo-search' ) );
 	}
 
 	\WPTS\Installer::ensure_tables();
@@ -279,7 +279,7 @@ add_action( 'wp_ajax_wpts_reindex_chunk', function (): void {
 add_action( 'wp_ajax_wpts_flush_cache_ajax', function (): void {
 	check_ajax_referer( 'wpts_admin', 'nonce' );
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_send_json_error( __( 'Forbidden', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'Forbidden', 'turbo-search' ) );
 	}
 
 	$engine = \WPTS\Core::instance()->get_engine();
@@ -288,7 +288,7 @@ add_action( 'wp_ajax_wpts_flush_cache_ajax', function (): void {
 
 	wp_send_json_success( [
 		'message' => sprintf(
-			__( '✅ Cache flushed (driver: %s).', 'wp-turbo-search' ),
+			__( '✅ Cache flushed (driver: %s).', 'turbo-search' ),
 			$driver
 		),
 	] );
@@ -298,11 +298,11 @@ add_action( 'wp_ajax_wpts_flush_cache_ajax', function (): void {
 add_action( 'wp_ajax_wpts_test_redis', function (): void {
 	check_ajax_referer( 'wpts_admin', 'nonce' );
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_send_json_error( __( 'Forbidden', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'Forbidden', 'turbo-search' ) );
 	}
 
 	if ( ! extension_loaded( 'redis' ) ) {
-		wp_send_json_error( __( 'PHP ext-redis is not installed on this server.', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'PHP ext-redis is not installed on this server.', 'turbo-search' ) );
 	}
 
 	$host = defined( 'WPTS_REDIS_HOST' ) ? (string) WPTS_REDIS_HOST : sanitize_text_field( wp_unslash( $_POST['host'] ?? '' ) );
@@ -325,7 +325,7 @@ add_action( 'wp_ajax_wpts_test_redis', function (): void {
 		$info    = $redis->info( 'server' );
 		$version = $info['redis_version'] ?? '?';
 		$redis->close();
-		wp_send_json_success( sprintf( __( 'Connected! Redis v%s', 'wp-turbo-search' ), $version ) );
+		wp_send_json_success( sprintf( __( 'Connected! Redis v%s', 'turbo-search' ), $version ) );
 	} catch ( \Exception $e ) {
 		wp_send_json_error( $e->getMessage() );
 	}
@@ -334,11 +334,11 @@ add_action( 'wp_ajax_wpts_test_redis', function (): void {
 add_action( 'wp_ajax_wpts_test_memcached', function (): void {
 	check_ajax_referer( 'wpts_admin', 'nonce' );
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_send_json_error( __( 'Forbidden', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'Forbidden', 'turbo-search' ) );
 	}
 
 	if ( ! extension_loaded( 'memcached' ) ) {
-		wp_send_json_error( __( 'PHP ext-memcached is not installed on this server.', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'PHP ext-memcached is not installed on this server.', 'turbo-search' ) );
 	}
 
 	$host = defined( 'WPTS_MEMCACHED_HOST' ) ? (string) WPTS_MEMCACHED_HOST : sanitize_text_field( wp_unslash( $_POST['host'] ?? '' ) );
@@ -354,11 +354,11 @@ add_action( 'wp_ajax_wpts_test_memcached', function (): void {
 		$mc->set( 'wpts_ping', 'pong', 5 );
 		$val = $mc->get( 'wpts_ping' );
 		if ( 'pong' !== $val ) {
-			wp_send_json_error( __( 'Round-trip test failed.', 'wp-turbo-search' ) );
+			wp_send_json_error( __( 'Round-trip test failed.', 'turbo-search' ) );
 		}
 		$stats   = $mc->getStats();
 		$version = $stats["{$host}:{$port}"]['version'] ?? '?';
-		wp_send_json_success( sprintf( __( 'Connected! Memcached v%s', 'wp-turbo-search' ), $version ) );
+		wp_send_json_success( sprintf( __( 'Connected! Memcached v%s', 'turbo-search' ), $version ) );
 	} catch ( \Exception $e ) {
 		wp_send_json_error( $e->getMessage() );
 	}
@@ -368,7 +368,7 @@ add_action( 'wp_ajax_wpts_test_memcached', function (): void {
 add_action( 'wp_ajax_wpts_dashboard_chart', function (): void {
 	check_ajax_referer( 'wpts_admin', 'nonce' );
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_send_json_error( __( 'Forbidden', 'wp-turbo-search' ) );
+		wp_send_json_error( __( 'Forbidden', 'turbo-search' ) );
 	}
 
 	$days = absint( sanitize_text_field( wp_unslash( $_GET['days'] ?? '14' ) ) );

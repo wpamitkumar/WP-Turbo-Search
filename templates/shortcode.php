@@ -29,7 +29,7 @@ function wpts_render_search_shortcode( $atts ): string {
 	$default_voice  = class_exists( '\WPTS\Admin\Settings' ) && ! \WPTS\Admin\Settings::get( 'enable_voice_search', true ) ? 0 : 1;
 
 	$atts = shortcode_atts( [
-		'placeholder'      => __( 'Search…', 'wp-turbo-search' ),
+		'placeholder'      => __( 'Search…', 'turbo-search' ),
 		'post_type'        => '',
 		'post_types'       => '',
 		'per_page'         => 8,
@@ -162,26 +162,26 @@ function wpts_enqueue_search_assets(): void {
 			'results_layout' => $settings['results_layout'] ?? 'list',
 			'debounce_ms'    => (int) ( $settings['debounce_ms'] ?? 200 ),
 			'i18n'           => [
-				'voice_listening'   => __( 'Listening… Speak now', 'wp-turbo-search' ),
-				'voice_search'      => __( 'Voice search', 'wp-turbo-search' ),
-				'voice_denied'      => __( 'Microphone permission was denied. Please allow microphone access in your browser settings to use voice search.', 'wp-turbo-search' ),
-				'voice_https'       => __( 'Voice search requires a secure HTTPS connection. Please use HTTPS or localhost.', 'wp-turbo-search' ),
-				'voice_unsupported' => __( 'Voice search is not supported in this browser.', 'wp-turbo-search' ),
-				'voice_firefox'     => __( '🎙️ Voice search is supported in Chrome, Edge, Safari, and Opera. On Firefox, please type your query.', 'wp-turbo-search' ),
-				'clear'             => __( 'Clear search', 'wp-turbo-search' ),
-				'recent'            => __( 'Recent Searches', 'wp-turbo-search' ),
-				'favorites'         => __( 'Favorites', 'wp-turbo-search' ),
-				'no_favorites'      => __( 'No saved favorites yet.', 'wp-turbo-search' ),
-				'did_you_mean'      => __( 'Did you mean:', 'wp-turbo-search' ),
-				'view_all'          => __( 'View all results →', 'wp-turbo-search' ),
-				'add_to_cart'       => __( 'Add to Cart', 'wp-turbo-search' ),
-				'added_to_cart'     => __( 'Added to cart!', 'wp-turbo-search' ),
-				'no_results'        => __( 'No results found.', 'wp-turbo-search' ),
-				'searching'         => __( 'Searching…', 'wp-turbo-search' ),
+				'voice_listening'   => __( 'Listening… Speak now', 'turbo-search' ),
+				'voice_search'      => __( 'Voice search', 'turbo-search' ),
+				'voice_denied'      => __( 'Microphone permission was denied. Please allow microphone access in your browser settings to use voice search.', 'turbo-search' ),
+				'voice_https'       => __( 'Voice search requires a secure HTTPS connection. Please use HTTPS or localhost.', 'turbo-search' ),
+				'voice_unsupported' => __( 'Voice search is not supported in this browser.', 'turbo-search' ),
+				'voice_firefox'     => __( '🎙️ Voice search is supported in Chrome, Edge, Safari, and Opera. On Firefox, please type your query.', 'turbo-search' ),
+				'clear'             => __( 'Clear search', 'turbo-search' ),
+				'recent'            => __( 'Recent Searches', 'turbo-search' ),
+				'favorites'         => __( 'Favorites', 'turbo-search' ),
+				'no_favorites'      => __( 'No saved favorites yet.', 'turbo-search' ),
+				'did_you_mean'      => __( 'Did you mean:', 'turbo-search' ),
+				'view_all'          => __( 'View all results →', 'turbo-search' ),
+				'add_to_cart'       => __( 'Add to Cart', 'turbo-search' ),
+				'added_to_cart'     => __( 'Added to cart!', 'turbo-search' ),
+				'no_results'        => __( 'No results found.', 'turbo-search' ),
+				'searching'         => __( 'Searching…', 'turbo-search' ),
 			],
 		] );
 
-		wp_set_script_translations( 'wpts-search', 'wp-turbo-search', WPTS_DIR . 'languages' );
+		wp_set_script_translations( 'wpts-search', 'turbo-search', WPTS_DIR . 'languages' );
 	}
 }
 

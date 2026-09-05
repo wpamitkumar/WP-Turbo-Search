@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name:       WP Turbo Search
- * Plugin URI:        https://wordpress.org/plugins/wp-turbo-search
+ * Plugin Name:       Turbo Search
+ * Plugin URI:        https://wordpress.org/plugins/turbo-search
  * Description:       Ultra-fast live search engine for WordPress & WooCommerce with MySQL FULLTEXT, Typesense, Elasticsearch, PDF search, AI vector search, and analytics.
  * Version:           1.0.0
  * Requires at least: 6.0
@@ -11,7 +11,7 @@
  * Author URI:        https://profiles.wordpress.org/wpamitkumar
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       wp-turbo-search
+ * Text Domain:       turbo-search
  * Domain Path:       /languages
  * Network:           true
  */
@@ -37,7 +37,7 @@ if ( version_compare( PHP_VERSION, WPTS_MIN_PHP, '<' ) ) {
 	add_action( 'admin_notices', function () {
 		echo '<div class="notice notice-error"><p>' .
 			 sprintf(
-				 esc_html__( 'WP Turbo Search requires PHP %s or higher.', 'wp-turbo-search' ),
+				 esc_html__( 'Turbo Search requires PHP %s or higher.', 'turbo-search' ),
 				 WPTS_MIN_PHP
 			 ) .
 			 '</p></div>';
@@ -113,7 +113,7 @@ function wpts_register_post_handlers(): void {
 	add_action( 'admin_post_wpts_reindex', function (): void {
 		check_admin_referer( 'wpts_reindex' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'wp-turbo-search' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'turbo-search' ) );
 		}
 		WPTS\Core::instance()->get_engine()->reindex_all();
 		wp_safe_redirect( admin_url( 'admin.php?page=wpts-index&reindexed=1' ) );
@@ -124,7 +124,7 @@ function wpts_register_post_handlers(): void {
 	add_action( 'admin_post_wpts_flush_cache', function (): void {
 		check_admin_referer( 'wpts_flush_cache' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'wp-turbo-search' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'turbo-search' ) );
 		}
 		WPTS\Core::instance()->get_engine()->flush_all();
 		wp_safe_redirect( admin_url( 'admin.php?page=wpts-cache&tab=flush&flushed=1' ) );
@@ -135,7 +135,7 @@ function wpts_register_post_handlers(): void {
 	add_action( 'admin_post_wpts_save_settings', function (): void {
 		check_admin_referer( 'wpts_save_settings', 'wpts_nonce' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'wp-turbo-search' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'turbo-search' ) );
 		}
 		WPTS\Admin\Settings::save( $_POST );
 		$tab = sanitize_key( wp_unslash( $_POST['_tab'] ?? 'general' ) );
@@ -147,7 +147,7 @@ function wpts_register_post_handlers(): void {
 	add_action( 'admin_post_wpts_export_settings', function (): void {
 		check_admin_referer( 'wpts_export_settings' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'wp-turbo-search' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'turbo-search' ) );
 		}
 		WPTS\Admin\SettingsExporter::export();
 	} );
@@ -156,7 +156,7 @@ function wpts_register_post_handlers(): void {
 	add_action( 'admin_post_wpts_import_settings', function (): void {
 		check_admin_referer( 'wpts_import_settings', 'wpts_import_nonce' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'wp-turbo-search' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'turbo-search' ) );
 		}
 		if ( ! empty( $_FILES['import_file'] ) ) {
 			$result = WPTS\Admin\SettingsExporter::import( $_FILES['import_file'] );
@@ -170,7 +170,7 @@ function wpts_register_post_handlers(): void {
 	add_action( 'admin_post_wpts_save_cache_settings', function (): void {
 		check_admin_referer( 'wpts_save_cache_settings', 'wpts_cache_nonce' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'wp-turbo-search' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'turbo-search' ) );
 		}
 		WPTS\Admin\Settings::save( $_POST );
 		$tab = sanitize_key( wp_unslash( $_POST['_tab'] ?? 'general' ) );
@@ -182,7 +182,7 @@ function wpts_register_post_handlers(): void {
 	add_action( 'admin_post_wpts_reset_stats', function (): void {
 		check_admin_referer( 'wpts_reset_stats' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'wp-turbo-search' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'turbo-search' ) );
 		}
 		delete_option( 'wpts_cache_stats_data' );
 		delete_option( 'wpts_cache_stats_since' );
@@ -194,7 +194,7 @@ function wpts_register_post_handlers(): void {
 	add_action( 'admin_post_wpts_install_tables', function (): void {
 		check_admin_referer( 'wpts_install_tables' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'wp-turbo-search' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'turbo-search' ) );
 		}
 		WPTS\Installer::run_for_site();
 		wp_safe_redirect( admin_url( 'admin.php?page=wpts-index&tables_created=1' ) );
@@ -205,7 +205,7 @@ function wpts_register_post_handlers(): void {
 	add_action( 'admin_post_wpts_prune_tracking', function (): void {
 		check_admin_referer( 'wpts_prune_tracking' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'wp-turbo-search' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'turbo-search' ) );
 		}
 		$days = absint( WPTS\Admin\Settings::get( 'tracking_retention_days', 90 ) );
 		WPTS\Tracker::instance()->prune( $days );
@@ -217,7 +217,7 @@ function wpts_register_post_handlers(): void {
 	add_action( 'admin_post_wpts_reset_tracking', function (): void {
 		check_admin_referer( 'wpts_reset_tracking' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'wp-turbo-search' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'turbo-search' ) );
 		}
 		WPTS\Tracker::instance()->reset_counters();
 		wp_safe_redirect( admin_url( 'admin.php?page=wpts-tracking&tab=settings&reset=1' ) );
@@ -228,7 +228,7 @@ function wpts_register_post_handlers(): void {
 	add_action( 'admin_post_wpts_export_searches', function (): void {
 		check_admin_referer( 'wpts_export_searches' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to do this.', 'wp-turbo-search' ) );
+			wp_die( esc_html__( 'You do not have permission to do this.', 'turbo-search' ) );
 		}
 		$days = absint( wp_unslash( $_GET['days'] ?? 30 ) );
 		$mode = sanitize_key( wp_unslash( $_GET['mode'] ?? 'searches' ) );

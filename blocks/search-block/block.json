@@ -13,7 +13,7 @@
 		"turbo",
 		"ajax"
 	],
-	"textdomain": "wp-turbo-search",
+	"textdomain": "turbo-search",
 	"supports": {
 		"html": false,
 		"align": [

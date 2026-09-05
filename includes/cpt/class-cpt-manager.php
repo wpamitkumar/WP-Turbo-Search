@@ -40,15 +40,15 @@ class Manager {
 
 	public function register_resource_cpt(): void {
 		$labels = [
-			'name'               => _x( 'Resources', 'post type general name', 'wp-turbo-search' ),
-			'singular_name'      => _x( 'Resource',  'post type singular name', 'wp-turbo-search' ),
-			'add_new'            => __( 'Add New Resource', 'wp-turbo-search' ),
-			'add_new_item'       => __( 'Add New Resource', 'wp-turbo-search' ),
-			'edit_item'          => __( 'Edit Resource', 'wp-turbo-search' ),
-			'view_item'          => __( 'View Resource', 'wp-turbo-search' ),
-			'search_items'       => __( 'Search Resources', 'wp-turbo-search' ),
-			'not_found'          => __( 'No resources found.', 'wp-turbo-search' ),
-			'not_found_in_trash' => __( 'No resources found in Trash.', 'wp-turbo-search' ),
+			'name'               => _x( 'Resources', 'post type general name', 'turbo-search' ),
+			'singular_name'      => _x( 'Resource',  'post type singular name', 'turbo-search' ),
+			'add_new'            => __( 'Add New Resource', 'turbo-search' ),
+			'add_new_item'       => __( 'Add New Resource', 'turbo-search' ),
+			'edit_item'          => __( 'Edit Resource', 'turbo-search' ),
+			'view_item'          => __( 'View Resource', 'turbo-search' ),
+			'search_items'       => __( 'Search Resources', 'turbo-search' ),
+			'not_found'          => __( 'No resources found.', 'turbo-search' ),
+			'not_found_in_trash' => __( 'No resources found in Trash.', 'turbo-search' ),
 		];
 
 		$args = [

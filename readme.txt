@@ -1,4 +1,4 @@
-=== WP Turbo Search ===
+=== Turbo Search ===
 Contributors: wpamitkumar
 Donate link: https://profiles.wordpress.org/wpamitkumar
 Tags: search, live search, ajax search, woocommerce search, typesense, Elasticsearch, PDF search, AI vector search, cache
@@ -13,7 +13,7 @@ Enterprise-grade instant search engine with sub-10ms queries, full-text PDF/DOCX
 
 == Description ==
 
-**WP Turbo Search** is a modern, high-performance search and discovery engine for WordPress and WooCommerce. Built for speed and scale, it replaces default slow database queries with an indexed full-text engine, sub-10ms query execution, and optional hybrid AI vector reranking.
+**Turbo Search** is a modern, high-performance search and discovery engine for WordPress and WooCommerce. Built for speed and scale, it replaces default slow database queries with an indexed full-text engine, sub-10ms query execution, and optional hybrid AI vector reranking.
 
 ### ⚡ Key Features
 
@@ -35,18 +35,18 @@ Enterprise-grade instant search engine with sub-10ms queries, full-text PDF/DOCX
 
 == Installation ==
 
-1. Upload `wp-turbo-search` to the `/wp-content/plugins/` directory, or install the ZIP file via **Plugins → Add New → Upload Plugin**.
+1. Upload `turbo-search` to the `/wp-content/plugins/` directory, or install the ZIP file via **Plugins → Add New → Upload Plugin**.
 2. Activate the plugin through the **Plugins** screen in WordPress.
 3. Go to **Turbo Search → Index Manager** and click **Re-index All Posts** to populate the search index table.
 4. Add the search bar to your site using the **Turbo Search Bar** Gutenberg Block or the shortcode `[wpts_search]`.
 
 == Frequently Asked Questions ==
 
-= Does WP Turbo Search require external server software like Typesense or Elasticsearch? =
-No. WP Turbo Search includes a native MySQL / MariaDB FULLTEXT engine that works on any standard shared hosting, VPS, or dedicated server out of the box with zero external dependencies. External drivers (Typesense, Elasticsearch, Redis) are optional for massive scale.
+= Does Turbo Search require external server software like Typesense or Elasticsearch? =
+No. Turbo Search includes a native MySQL / MariaDB FULLTEXT engine that works on any standard shared hosting, VPS, or dedicated server out of the box with zero external dependencies. External drivers (Typesense, Elasticsearch, Redis) are optional for massive scale.
 
 = How does PDF and document search work? =
-When files are uploaded to the WordPress Media Library or attached to posts/products, WP Turbo Search parses text content directly using native PHP compression and XML parsers.
+When files are uploaded to the WordPress Media Library or attached to posts/products, Turbo Search parses text content directly using native PHP compression and XML parsers.
 
 = Is search tracking GDPR compliant? =
 Yes. IP addresses and user agents are hashed or anonymized according to the configured retention schedule (default 30 days).
@@ -68,7 +68,7 @@ No. Modern web browsers (Google Chrome, Apple Safari, Microsoft Edge) enforce W3
 == Changelog ==
 
 = 1.0.0 =
-* Initial release of WP Turbo Search.
+* Initial release of Turbo Search.
 * Event-driven incremental indexing engine (0ms post update delay).
 * Native full-text document parsing for PDF, DOCX, TXT, CSV, TSV, and MD attachments with continuous word tokenization.
 * 3 Visual Results Layouts: List View, Grid Cards, and Compact Card.
@@ -83,6 +83,6 @@ No. Modern web browsers (Google Chrome, Apple Safari, Microsoft Edge) enforce W3
 == Upgrade Notice ==
 
 = 1.0.0 =
-Initial production release of WP Turbo Search.
+Initial production release of Turbo Search.
 
 

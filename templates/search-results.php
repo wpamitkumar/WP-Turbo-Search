@@ -52,14 +52,14 @@ function wpts_render_search_results_page( $atts ): string {
 	<div class="wpts-results-page-wrap" data-wpts-results-page>
 		<!-- Search bar on results page -->
 		<div class="wpts-results-search-bar">
-			<form method="get" action="<?php echo esc_url( get_permalink() ); ?>" role="search" aria-label="<?php esc_attr_e( 'Search query form', 'wp-turbo-search' ); ?>">
+			<form method="get" action="<?php echo esc_url( get_permalink() ); ?>" role="search" aria-label="<?php esc_attr_e( 'Search query form', 'turbo-search' ); ?>">
 				<div class="wpts-input-wrap">
-					<label for="wpts-results-query-input" class="wpts-sr-only"><?php esc_html_e( 'Search', 'wp-turbo-search' ); ?></label>
+					<label for="wpts-results-query-input" class="wpts-sr-only"><?php esc_html_e( 'Search', 'turbo-search' ); ?></label>
 					<input type="search" id="wpts-results-query-input" name="q" value="<?php echo esc_attr( $query ); ?>"
-						   placeholder="<?php esc_attr_e( 'Search again…', 'wp-turbo-search' ); ?>"
+						   placeholder="<?php esc_attr_e( 'Search again…', 'turbo-search' ); ?>"
 						   class="wpts-input"
-						   aria-label="<?php esc_attr_e( 'Search query', 'wp-turbo-search' ); ?>">
-					<button type="submit" class="button button-primary"><?php esc_html_e( 'Search', 'wp-turbo-search' ); ?></button>
+						   aria-label="<?php esc_attr_e( 'Search query', 'turbo-search' ); ?>">
+					<button type="submit" class="button button-primary"><?php esc_html_e( 'Search', 'turbo-search' ); ?></button>
 				</div>
 			</form>
 		</div>
@@ -67,18 +67,18 @@ function wpts_render_search_results_page( $atts ): string {
 		<?php if ( '' !== $query ) : ?>
 			<div class="wpts-results-layout">
 				<!-- Sidebar Facets -->
-				<aside class="wpts-facets-sidebar" role="region" aria-label="<?php esc_attr_e( 'Search Filter Options', 'wp-turbo-search' ); ?>">
-					<h3><?php esc_html_e( 'Filter Results', 'wp-turbo-search' ); ?></h3>
+				<aside class="wpts-facets-sidebar" role="region" aria-label="<?php esc_attr_e( 'Search Filter Options', 'turbo-search' ); ?>">
+					<h3><?php esc_html_e( 'Filter Results', 'turbo-search' ); ?></h3>
 
 					<!-- Post Types -->
 					<?php if ( ! empty( $facets['post_types'] ) ) : ?>
 					<fieldset class="wpts-facet-group">
-						<legend><h4><?php esc_html_e( 'Content Type', 'wp-turbo-search' ); ?></h4></legend>
+						<legend><h4><?php esc_html_e( 'Content Type', 'turbo-search' ); ?></h4></legend>
 						<?php foreach ( $facets['post_types'] as $pt ) : ?>
 							<label class="wpts-facet-item">
 								<input type="checkbox" name="facet_post_type" value="<?php echo esc_attr( $pt['name'] ); ?>">
 								<span><?php echo esc_html( $pt['label'] ); ?></span>
-								<span class="wpts-facet-count" aria-label="<?php printf( esc_attr__( '%d matching items', 'wp-turbo-search' ), (int) $pt['count'] ); ?>">(<?php echo (int) $pt['count']; ?>)</span>
+								<span class="wpts-facet-count" aria-label="<?php printf( esc_attr__( '%d matching items', 'turbo-search' ), (int) $pt['count'] ); ?>">(<?php echo (int) $pt['count']; ?>)</span>
 							</label>
 						<?php endforeach; ?>
 					</fieldset>
@@ -93,7 +93,7 @@ function wpts_render_search_results_page( $atts ): string {
 									<label class="wpts-facet-item">
 										<input type="checkbox" name="facet_tax" value="<?php echo esc_attr( $term['slug'] ); ?>">
 										<span><?php echo esc_html( $term['name'] ); ?></span>
-										<span class="wpts-facet-count" aria-label="<?php printf( esc_attr__( '%d matching items', 'wp-turbo-search' ), (int) $term['count'] ); ?>">(<?php echo (int) $term['count']; ?>)</span>
+										<span class="wpts-facet-count" aria-label="<?php printf( esc_attr__( '%d matching items', 'turbo-search' ), (int) $term['count'] ); ?>">(<?php echo (int) $term['count']; ?>)</span>
 									</label>
 								<?php endforeach; ?>
 							</fieldset>
@@ -102,26 +102,26 @@ function wpts_render_search_results_page( $atts ): string {
 				</aside>
 
 				<!-- Results Main Column -->
-				<main class="wpts-results-main" role="region" aria-label="<?php esc_attr_e( 'Search Results', 'wp-turbo-search' ); ?>">
+				<main class="wpts-results-main" role="region" aria-label="<?php esc_attr_e( 'Search Results', 'turbo-search' ); ?>">
 					<div class="wpts-results-top-bar" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
 						<h2 style="margin:0;">
-							<?php printf( esc_html__( '%1$d results for "%2$s"', 'wp-turbo-search' ), $found, esc_html( $query ) ); ?>
+							<?php printf( esc_html__( '%1$d results for "%2$s"', 'turbo-search' ), $found, esc_html( $query ) ); ?>
 						</h2>
 						<div class="wpts-layout-toggle-btns" style="display:inline-flex; gap:6px;">
-							<a href="<?php echo esc_url( add_query_arg( 'layout', 'grid' ) ); ?>" data-wpts-set-layout="grid" class="button <?php echo 'list' !== $layout ? 'button-primary' : ''; ?>" title="<?php esc_attr_e( 'Grid View', 'wp-turbo-search' ); ?>" aria-label="<?php esc_attr_e( 'Grid View', 'wp-turbo-search' ); ?>" style="padding:4px 10px; font-size:12px; display:inline-flex; align-items:center;">
-								⊞ <?php esc_html_e( 'Grid', 'wp-turbo-search' ); ?>
+							<a href="<?php echo esc_url( add_query_arg( 'layout', 'grid' ) ); ?>" data-wpts-set-layout="grid" class="button <?php echo 'list' !== $layout ? 'button-primary' : ''; ?>" title="<?php esc_attr_e( 'Grid View', 'turbo-search' ); ?>" aria-label="<?php esc_attr_e( 'Grid View', 'turbo-search' ); ?>" style="padding:4px 10px; font-size:12px; display:inline-flex; align-items:center;">
+								⊞ <?php esc_html_e( 'Grid', 'turbo-search' ); ?>
 							</a>
-							<a href="<?php echo esc_url( add_query_arg( 'layout', 'list' ) ); ?>" data-wpts-set-layout="list" class="button <?php echo 'list' === $layout ? 'button-primary' : ''; ?>" title="<?php esc_attr_e( 'List View', 'wp-turbo-search' ); ?>" aria-label="<?php esc_attr_e( 'List View', 'wp-turbo-search' ); ?>" style="padding:4px 10px; font-size:12px; display:inline-flex; align-items:center;">
-								☰ <?php esc_html_e( 'List', 'wp-turbo-search' ); ?>
+							<a href="<?php echo esc_url( add_query_arg( 'layout', 'list' ) ); ?>" data-wpts-set-layout="list" class="button <?php echo 'list' === $layout ? 'button-primary' : ''; ?>" title="<?php esc_attr_e( 'List View', 'turbo-search' ); ?>" aria-label="<?php esc_attr_e( 'List View', 'turbo-search' ); ?>" style="padding:4px 10px; font-size:12px; display:inline-flex; align-items:center;">
+								☰ <?php esc_html_e( 'List', 'turbo-search' ); ?>
 							</a>
 						</div>
 					</div>
 
 					<?php if ( $did_you_mean ) : ?>
 					<div class="wpts-did-you-mean-banner" role="status">
-						<span><?php esc_html_e( 'Did you mean:', 'wp-turbo-search' ); ?></span>
+						<span><?php esc_html_e( 'Did you mean:', 'turbo-search' ); ?></span>
 						<a href="<?php echo esc_url( add_query_arg( 'q', $did_you_mean, get_permalink() ) ); ?>"
-						   aria-label="<?php printf( esc_attr__( 'Search for %s instead', 'wp-turbo-search' ), esc_attr( $did_you_mean ) ); ?>">
+						   aria-label="<?php printf( esc_attr__( 'Search for %s instead', 'turbo-search' ), esc_attr( $did_you_mean ) ); ?>">
 							<strong><?php echo esc_html( $did_you_mean ); ?></strong>
 						</a>?
 					</div>
@@ -132,11 +132,11 @@ function wpts_render_search_results_page( $atts ): string {
 							<div class="wpts-empty-icon">
 								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="24" height="24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
 							</div>
-							<div class="wpts-empty-title"><?php esc_html_e( 'No matching documents found', 'wp-turbo-search' ); ?></div>
-							<p class="wpts-empty-desc"><?php esc_html_e( 'Try broadening your search keywords or checking for spelling errors.', 'wp-turbo-search' ); ?></p>
+							<div class="wpts-empty-title"><?php esc_html_e( 'No matching documents found', 'turbo-search' ); ?></div>
+							<p class="wpts-empty-desc"><?php esc_html_e( 'Try broadening your search keywords or checking for spelling errors.', 'turbo-search' ); ?></p>
 						</div>
 					<?php else : ?>
-						<div class="wpts-grid-results <?php echo 'list' === $layout ? 'is-list' : 'is-grid'; ?>" role="feed" aria-label="<?php esc_attr_e( 'Matching Search Results List', 'wp-turbo-search' ); ?>">
+						<div class="wpts-grid-results <?php echo 'list' === $layout ? 'is-list' : 'is-grid'; ?>" role="feed" aria-label="<?php esc_attr_e( 'Matching Search Results List', 'turbo-search' ); ?>">
 							<?php foreach ( $hits as $hit ) : ?>
 							<article class="wpts-result-card" data-post-id="<?php echo esc_attr( $hit['post_id'] ); ?>">
 								<?php if ( ! empty( $hit['thumbnail_url'] ) ) : ?>
@@ -156,7 +156,7 @@ function wpts_render_search_results_page( $atts ): string {
 									<?php endif; ?>
 									<div class="wpts-card-footer">
 										<?php if ( ! empty( $hit['price'] ) ) : ?>
-											<span class="wpts-card-price" aria-label="<?php printf( esc_attr__( 'Price: %s dollars', 'wp-turbo-search' ), number_format( (float) $hit['price'], 2 ) ); ?>">$<?php echo number_format( (float) $hit['price'], 2 ); ?></span>
+											<span class="wpts-card-price" aria-label="<?php printf( esc_attr__( 'Price: %s dollars', 'turbo-search' ), number_format( (float) $hit['price'], 2 ) ); ?>">$<?php echo number_format( (float) $hit['price'], 2 ); ?></span>
 										<?php endif; ?>
 										<?php if ( ! empty( $hit['date_formatted'] ) ) : ?>
 											<span class="wpts-card-date"><?php echo esc_html( $hit['date_formatted'] ); ?></span>
@@ -169,12 +169,12 @@ function wpts_render_search_results_page( $atts ): string {
 
 						<!-- Pagination -->
 						<?php if ( $pages > 1 ) : ?>
-						<nav class="wpts-pagination-bar" aria-label="<?php esc_attr_e( 'Search results pagination', 'wp-turbo-search' ); ?>">
+						<nav class="wpts-pagination-bar" aria-label="<?php esc_attr_e( 'Search results pagination', 'turbo-search' ); ?>">
 							<?php if ( $page > 1 ) : ?>
 								<a href="<?php echo esc_url( add_query_arg( [ 'paged' => $page - 1, 'page' => $page - 1 ] ) ); ?>"
 								   class="wpts-page-btn wpts-page-prev"
-								   aria-label="<?php esc_attr_e( 'Previous page', 'wp-turbo-search' ); ?>">
-									&larr; <?php esc_html_e( 'Prev', 'wp-turbo-search' ); ?>
+								   aria-label="<?php esc_attr_e( 'Previous page', 'turbo-search' ); ?>">
+									&larr; <?php esc_html_e( 'Prev', 'turbo-search' ); ?>
 								</a>
 							<?php endif; ?>
 
@@ -188,7 +188,7 @@ function wpts_render_search_results_page( $atts ): string {
 								<a href="<?php echo esc_url( add_query_arg( [ 'paged' => $p, 'page' => $p ] ) ); ?>"
 								   class="wpts-page-btn <?php echo (int) $p === (int) $page ? 'is-active' : ''; ?>"
 								   <?php if ( (int) $p === (int) $page ) echo 'aria-current="page"'; ?>
-								   aria-label="<?php printf( esc_attr__( 'Go to page %d', 'wp-turbo-search' ), $p ); ?>">
+								   aria-label="<?php printf( esc_attr__( 'Go to page %d', 'turbo-search' ), $p ); ?>">
 									<?php echo (int) $p; ?>
 								</a>
 							<?php endfor; ?>
@@ -196,8 +196,8 @@ function wpts_render_search_results_page( $atts ): string {
 							<?php if ( $page < $pages ) : ?>
 								<a href="<?php echo esc_url( add_query_arg( [ 'paged' => $page + 1, 'page' => $page + 1 ] ) ); ?>"
 								   class="wpts-page-btn wpts-page-next"
-								   aria-label="<?php esc_attr_e( 'Next page', 'wp-turbo-search' ); ?>">
-									<?php esc_html_e( 'Next', 'wp-turbo-search' ); ?> &rarr;
+								   aria-label="<?php esc_attr_e( 'Next page', 'turbo-search' ); ?>">
+									<?php esc_html_e( 'Next', 'turbo-search' ); ?> &rarr;
 								</a>
 							<?php endif; ?>
 						</nav>

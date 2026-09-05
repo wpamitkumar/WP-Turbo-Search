@@ -95,11 +95,11 @@ class Facets {
 		);
 
 		$dates = [
-			'24h'   => [ 'label' => __( 'Last 24 hours', 'wp-turbo-search' ), 'count' => 0 ],
-			'7d'    => [ 'label' => __( 'Past week', 'wp-turbo-search' ),      'count' => 0 ],
-			'30d'   => [ 'label' => __( 'Past month', 'wp-turbo-search' ),     'count' => 0 ],
-			'1y'    => [ 'label' => __( 'Past year', 'wp-turbo-search' ),      'count' => 0 ],
-			'older' => [ 'label' => __( 'Older', 'wp-turbo-search' ),          'count' => 0 ],
+			'24h'   => [ 'label' => __( 'Last 24 hours', 'turbo-search' ), 'count' => 0 ],
+			'7d'    => [ 'label' => __( 'Past week', 'turbo-search' ),      'count' => 0 ],
+			'30d'   => [ 'label' => __( 'Past month', 'turbo-search' ),     'count' => 0 ],
+			'1y'    => [ 'label' => __( 'Past year', 'turbo-search' ),      'count' => 0 ],
+			'older' => [ 'label' => __( 'Older', 'turbo-search' ),          'count' => 0 ],
 		];
 
 		foreach ( (array) $date_rows as $dr ) {

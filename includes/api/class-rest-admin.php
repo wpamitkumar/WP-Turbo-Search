@@ -218,7 +218,7 @@ class RestAdmin {
 				];
 			}
 		}
-		$roles[] = [ 'slug' => 'guest', 'name' => __( 'Guest / Logged-out', 'wp-turbo-search' ) ];
+		$roles[] = [ 'slug' => 'guest', 'name' => __( 'Guest / Logged-out', 'turbo-search' ) ];
 
 		$indexed_count = $engine->get_indexed_count();
 		$coverage_pct  = $total_pub > 0 ? min( 100, round( ( $indexed_count / $total_pub ) * 100 ) ) : 0;
@@ -242,14 +242,14 @@ class RestAdmin {
 	public function save_config( \WP_REST_Request $request ): \WP_REST_Response {
 		$params = $request->get_json_params();
 		if ( ! is_array( $params ) ) {
-			return new \WP_REST_Response( [ 'success' => false, 'message' => __( 'Invalid payload.', 'wp-turbo-search' ) ], 400 );
+			return new \WP_REST_Response( [ 'success' => false, 'message' => __( 'Invalid payload.', 'turbo-search' ) ], 400 );
 		}
 
 		Settings::save( $params );
 
 		return new \WP_REST_Response( [
 			'success'  => true,
-			'message'  => __( 'Settings saved successfully!', 'wp-turbo-search' ),
+			'message'  => __( 'Settings saved successfully!', 'turbo-search' ),
 			'settings' => Settings::get_all(),
 		], 200 );
 	}
@@ -259,7 +259,7 @@ class RestAdmin {
 
 		return new \WP_REST_Response( [
 			'success'  => true,
-			'message'  => __( 'All settings restored to factory defaults.', 'wp-turbo-search' ),
+			'message'  => __( 'All settings restored to factory defaults.', 'turbo-search' ),
 			'settings' => Settings::get_all(),
 		], 200 );
 	}
@@ -275,31 +275,31 @@ class RestAdmin {
 		$id    = absint( $request->get_param( 'id' ) );
 
 		if ( '' === $words ) {
-			return new \WP_REST_Response( [ 'success' => false, 'message' => __( 'Synonym words cannot be empty.', 'wp-turbo-search' ) ], 400 );
+			return new \WP_REST_Response( [ 'success' => false, 'message' => __( 'Synonym words cannot be empty.', 'turbo-search' ) ], 400 );
 		}
 
 		$ok = Synonyms::save_custom_synonym( $words, $id );
 		if ( $ok ) {
 			return new \WP_REST_Response( [
 				'success'  => true,
-				'message'  => __( 'Synonym group saved!', 'wp-turbo-search' ),
+				'message'  => __( 'Synonym group saved!', 'turbo-search' ),
 				'synonyms' => Synonyms::get_custom_synonyms(),
 			], 200 );
 		}
 
-		return new \WP_REST_Response( [ 'success' => false, 'message' => __( 'Could not save synonym group.', 'wp-turbo-search' ) ], 500 );
+		return new \WP_REST_Response( [ 'success' => false, 'message' => __( 'Could not save synonym group.', 'turbo-search' ) ], 500 );
 	}
 
 	public function delete_synonym( \WP_REST_Request $request ): \WP_REST_Response {
 		$id = absint( $request->get_param( 'id' ) );
 		if ( $id <= 0 ) {
-			return new \WP_REST_Response( [ 'success' => false, 'message' => __( 'Invalid ID.', 'wp-turbo-search' ) ], 400 );
+			return new \WP_REST_Response( [ 'success' => false, 'message' => __( 'Invalid ID.', 'turbo-search' ) ], 400 );
 		}
 
 		Synonyms::delete_custom_synonym( $id );
 		return new \WP_REST_Response( [
 			'success'  => true,
-			'message'  => __( 'Synonym group deleted.', 'wp-turbo-search' ),
+			'message'  => __( 'Synonym group deleted.', 'turbo-search' ),
 			'synonyms' => Synonyms::get_custom_synonyms(),
 		], 200 );
 	}
@@ -326,12 +326,12 @@ class RestAdmin {
 					if ( ! empty( $res['ok'] ) ) {
 						return new \WP_REST_Response( [
 							'success' => true,
-							'message' => sprintf( __( 'Connected! Collection: %s (%d docs)', 'wp-turbo-search' ), $res['collection'], $res['num_documents'] ),
+							'message' => sprintf( __( 'Connected! Collection: %s (%d docs)', 'turbo-search' ), $res['collection'], $res['num_documents'] ),
 						], 200 );
 					}
 					return new \WP_REST_Response( [
 						'success' => false,
-						'message' => $res['error'] ?? __( 'Connection failed. Please check host, port, and API key.', 'wp-turbo-search' ),
+						'message' => $res['error'] ?? __( 'Connection failed. Please check host, port, and API key.', 'turbo-search' ),
 					], 200 );
 				} catch ( \Throwable $e ) {
 					return new \WP_REST_Response( [ 'success' => false, 'message' => $e->getMessage() ], 200 );
@@ -355,12 +355,12 @@ class RestAdmin {
 					if ( ! empty( $res['ok'] ) ) {
 						return new \WP_REST_Response( [
 							'success' => true,
-							'message' => sprintf( __( 'Connected! Cluster: %s (v%s, status: %s)', 'wp-turbo-search' ), $res['cluster_name'], $res['version'], $res['status'] ),
+							'message' => sprintf( __( 'Connected! Cluster: %s (v%s, status: %s)', 'turbo-search' ), $res['cluster_name'], $res['version'], $res['status'] ),
 						], 200 );
 					}
 					return new \WP_REST_Response( [
 						'success' => false,
-						'message' => $res['error'] ?? __( 'Connection failed. Please verify endpoint and credentials.', 'wp-turbo-search' ),
+						'message' => $res['error'] ?? __( 'Connection failed. Please verify endpoint and credentials.', 'turbo-search' ),
 					], 200 );
 				} catch ( \Throwable $e ) {
 					return new \WP_REST_Response( [ 'success' => false, 'message' => $e->getMessage() ], 200 );
@@ -380,12 +380,12 @@ class RestAdmin {
 						fclose( $fp );
 						return new \WP_REST_Response( [
 							'success' => true,
-							'message' => sprintf( __( 'Redis service is reachable at %s:%d (Note: Install PHP ext-redis for native caching)', 'wp-turbo-search' ), $host, $port ),
+							'message' => sprintf( __( 'Redis service is reachable at %s:%d (Note: Install PHP ext-redis for native caching)', 'turbo-search' ), $host, $port ),
 						], 200 );
 					}
 					return new \WP_REST_Response( [
 						'success' => false,
-						'message' => sprintf( __( 'PHP ext-redis is not loaded and Redis at %s:%d is unreachable (%s)', 'wp-turbo-search' ), $host, $port, $errstr ?: 'Connection refused' ),
+						'message' => sprintf( __( 'PHP ext-redis is not loaded and Redis at %s:%d is unreachable (%s)', 'turbo-search' ), $host, $port, $errstr ?: 'Connection refused' ),
 					], 200 );
 				}
 
@@ -395,7 +395,7 @@ class RestAdmin {
 					if ( ! $connected ) {
 						return new \WP_REST_Response( [
 							'success' => false,
-							'message' => sprintf( __( 'Could not connect to Redis at %s:%d. Please check if the Redis service is running.', 'wp-turbo-search' ), $host, $port ),
+							'message' => sprintf( __( 'Could not connect to Redis at %s:%d. Please check if the Redis service is running.', 'turbo-search' ), $host, $port ),
 						], 200 );
 					}
 					if ( ! empty( $pass ) ) {
@@ -403,7 +403,7 @@ class RestAdmin {
 						if ( ! $auth_ok ) {
 							return new \WP_REST_Response( [
 								'success' => false,
-								'message' => __( 'Redis authentication failed: Invalid password.', 'wp-turbo-search' ),
+								'message' => __( 'Redis authentication failed: Invalid password.', 'turbo-search' ),
 							], 200 );
 						}
 					}
@@ -417,12 +417,12 @@ class RestAdmin {
 
 					return new \WP_REST_Response( [
 						'success' => true,
-						'message' => sprintf( __( 'Connected successfully! Redis v%s (DB %d)', 'wp-turbo-search' ), $v, $db ),
+						'message' => sprintf( __( 'Connected successfully! Redis v%s (DB %d)', 'turbo-search' ), $v, $db ),
 					], 200 );
 				} catch ( \Throwable $e ) {
 					return new \WP_REST_Response( [
 						'success' => false,
-						'message' => sprintf( __( 'Redis Error: %s', 'wp-turbo-search' ), $e->getMessage() ),
+						'message' => sprintf( __( 'Redis Error: %s', 'turbo-search' ), $e->getMessage() ),
 					], 200 );
 				}
 
@@ -440,12 +440,12 @@ class RestAdmin {
 						fclose( $fp );
 						return new \WP_REST_Response( [
 							'success' => true,
-							'message' => sprintf( __( 'Memcached is reachable at %s:%d (%s). (Note: Install PHP ext-memcached for native caching)', 'wp-turbo-search' ), $host, $port, $resp ?: 'Active' ),
+							'message' => sprintf( __( 'Memcached is reachable at %s:%d (%s). (Note: Install PHP ext-memcached for native caching)', 'turbo-search' ), $host, $port, $resp ?: 'Active' ),
 						], 200 );
 					}
 					return new \WP_REST_Response( [
 						'success' => false,
-						'message' => sprintf( __( 'PHP ext-memcached is not loaded and Memcached at %s:%d is unreachable (%s)', 'wp-turbo-search' ), $host, $port, $errstr ?: 'Connection refused' ),
+						'message' => sprintf( __( 'PHP ext-memcached is not loaded and Memcached at %s:%d is unreachable (%s)', 'turbo-search' ), $host, $port, $errstr ?: 'Connection refused' ),
 					], 200 );
 				}
 
@@ -468,7 +468,7 @@ class RestAdmin {
 						if ( ! is_resource( $fp ) ) {
 							return new \WP_REST_Response( [
 								'success' => false,
-								'message' => sprintf( __( 'Could not connect to Memcached at %s:%d (%s)', 'wp-turbo-search' ), $host, $port, $errstr ?: 'Connection refused' ),
+								'message' => sprintf( __( 'Could not connect to Memcached at %s:%d (%s)', 'turbo-search' ), $host, $port, $errstr ?: 'Connection refused' ),
 							], 200 );
 						}
 						fclose( $fp );
@@ -482,17 +482,17 @@ class RestAdmin {
 					$v = ( is_array( $server_stat ) && ! empty( $server_stat['version'] ) ) ? $server_stat['version'] : 'OK';
 					return new \WP_REST_Response( [
 						'success' => true,
-						'message' => sprintf( __( 'Connected successfully! Memcached v%s', 'wp-turbo-search' ), $v ),
+						'message' => sprintf( __( 'Connected successfully! Memcached v%s', 'turbo-search' ), $v ),
 					], 200 );
 				} catch ( \Throwable $e ) {
 					return new \WP_REST_Response( [
 						'success' => false,
-						'message' => sprintf( __( 'Memcached Error: %s', 'wp-turbo-search' ), $e->getMessage() ),
+						'message' => sprintf( __( 'Memcached Error: %s', 'turbo-search' ), $e->getMessage() ),
 					], 200 );
 				}
 
 			default:
-				return new \WP_REST_Response( [ 'success' => false, 'message' => __( 'Unknown target driver.', 'wp-turbo-search' ) ], 200 );
+				return new \WP_REST_Response( [ 'success' => false, 'message' => __( 'Unknown target driver.', 'turbo-search' ) ], 200 );
 		}
 	}
 
@@ -511,7 +511,7 @@ class RestAdmin {
 		if ( ! $post_id ) {
 			return new \WP_REST_Response( [
 				'success' => false,
-				'message' => __( 'Please provide a valid numeric Post or Document ID.', 'wp-turbo-search' ),
+				'message' => __( 'Please provide a valid numeric Post or Document ID.', 'turbo-search' ),
 			], 400 );
 		}
 
@@ -519,7 +519,7 @@ class RestAdmin {
 		if ( ! ( $post instanceof \WP_Post ) ) {
 			return new \WP_REST_Response( [
 				'success' => false,
-				'message' => sprintf( __( 'Post or Document #%d was not found in the database.', 'wp-turbo-search' ), $post_id ),
+				'message' => sprintf( __( 'Post or Document #%d was not found in the database.', 'turbo-search' ), $post_id ),
 			], 404 );
 		}
 
@@ -531,7 +531,7 @@ class RestAdmin {
 		if ( ! $document ) {
 			return new \WP_REST_Response( [
 				'success' => false,
-				'message' => sprintf( __( 'Item #%d (status: %s) is not eligible for indexing. Must be published or inherited.', 'wp-turbo-search' ), $post_id, $post->post_status ),
+				'message' => sprintf( __( 'Item #%d (status: %s) is not eligible for indexing. Must be published or inherited.', 'turbo-search' ), $post_id, $post->post_status ),
 			], 400 );
 		}
 
@@ -542,9 +542,9 @@ class RestAdmin {
 
 			return new \WP_REST_Response( [
 				'success'       => true,
-				'message'       => sprintf( __( 'Item #%d ("%s") successfully indexed into %s search engine!', 'wp-turbo-search' ), $post_id, esc_html( $post->post_title ?: 'Untitled' ), strtoupper( $engine->get_engine_driver() ) ),
+				'message'       => sprintf( __( 'Item #%d ("%s") successfully indexed into %s search engine!', 'turbo-search' ), $post_id, esc_html( $post->post_title ?: 'Untitled' ), strtoupper( $engine->get_engine_driver() ) ),
 				'post_id'       => $post_id,
-				'post_title'    => $post->post_title ?: __( '(Untitled)', 'wp-turbo-search' ),
+				'post_title'    => $post->post_title ?: __( '(Untitled)', 'turbo-search' ),
 				'post_type'     => $post->post_type,
 				'post_status'   => $post->post_status,
 				'url'           => $document['url'] ?? get_permalink( $post_id ),
@@ -555,7 +555,7 @@ class RestAdmin {
 
 		return new \WP_REST_Response( [
 			'success' => false,
-			'message' => sprintf( __( 'Failed to write Post #%d to search engine index.', 'wp-turbo-search' ), $post_id ),
+			'message' => sprintf( __( 'Failed to write Post #%d to search engine index.', 'turbo-search' ), $post_id ),
 		], 500 );
 	}
 
@@ -566,7 +566,7 @@ class RestAdmin {
 
 		return new \WP_REST_Response( [
 			'success' => true,
-			'message' => sprintf( __( 'Search cache flushed successfully (cache driver: %s).', 'wp-turbo-search' ), strtoupper( $driver ) ),
+			'message' => sprintf( __( 'Search cache flushed successfully (cache driver: %s).', 'turbo-search' ), strtoupper( $driver ) ),
 		], 200 );
 	}
 
@@ -577,7 +577,7 @@ class RestAdmin {
 
 		return new \WP_REST_Response( [
 			'success'       => $ok,
-			'message'       => sprintf( __( 'Search index & queries for engine "%s" wiped and flushed successfully.', 'wp-turbo-search' ), strtoupper( $driver ) ),
+			'message'       => sprintf( __( 'Search index & queries for engine "%s" wiped and flushed successfully.', 'turbo-search' ), strtoupper( $driver ) ),
 			'indexed_count' => $engine->get_indexed_count(),
 		], 200 );
 	}
@@ -588,10 +588,10 @@ class RestAdmin {
 
 		if ( null !== $days && $days > 0 ) {
 			$tracker->prune( absint( $days ) );
-			$msg = sprintf( __( 'Pruned search logs older than %d days.', 'wp-turbo-search' ), absint( $days ) );
+			$msg = sprintf( __( 'Pruned search logs older than %d days.', 'turbo-search' ), absint( $days ) );
 		} else {
 			$tracker->reset_counters();
-			$msg = __( 'All search tracking logs, click data, and analytics events have been purged successfully.', 'wp-turbo-search' );
+			$msg = __( 'All search tracking logs, click data, and analytics events have been purged successfully.', 'turbo-search' );
 		}
 
 		return new \WP_REST_Response( [
@@ -775,7 +775,7 @@ class RestAdmin {
 				$raw_content = "# " . $meta['title'] . "\n\n" .
 					"> ⚠️ **Documentation Content Unavailable Locally**\n\n" .
 					"The file `" . $filename . "` could not be loaded from your server's `docs/` folder.\n\n" .
-					"Please verify that the `docs/` directory is present in your plugin directory (`wp-turbo-search/docs/`).";
+					"Please verify that the `docs/` directory is present in your plugin directory (`turbo-search/docs/`).";
 			}
 
 			$docs[] = [

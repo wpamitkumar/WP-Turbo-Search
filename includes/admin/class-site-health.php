@@ -14,11 +14,11 @@ class SiteHealth {
 
 	public static function register_tests( array $tests ): array {
 		$tests['direct']['wpts_engine_status'] = [
-			'label' => __( 'Turbo Search Engine Status', 'wp-turbo-search' ),
+			'label' => __( 'Turbo Search Engine Status', 'turbo-search' ),
 			'test'  => [ self::class, 'test_engine_status' ],
 		];
 		$tests['direct']['wpts_index_coverage'] = [
-			'label' => __( 'Turbo Search Index Coverage', 'wp-turbo-search' ),
+			'label' => __( 'Turbo Search Index Coverage', 'turbo-search' ),
 			'test'  => [ self::class, 'test_index_coverage' ],
 		];
 		return $tests;
@@ -31,14 +31,14 @@ class SiteHealth {
 
 		if ( 'mysql' === $driver || ! empty( $status['connected'] ) ) {
 			return [
-				'label'       => sprintf( __( 'Search Engine (%s) is healthy', 'wp-turbo-search' ), strtoupper( $driver ) ),
+				'label'       => sprintf( __( 'Search Engine (%s) is healthy', 'turbo-search' ), strtoupper( $driver ) ),
 				'status'      => 'good',
 				'badge'       => [
-					'label' => __( 'Turbo Search', 'wp-turbo-search' ),
+					'label' => __( 'Turbo Search', 'turbo-search' ),
 					'color' => 'blue',
 				],
 				'description' => sprintf(
-					__( 'The active search engine (%s) and cache driver (%s) are connected and serving results.', 'wp-turbo-search' ),
+					__( 'The active search engine (%s) and cache driver (%s) are connected and serving results.', 'turbo-search' ),
 					strtoupper( $driver ),
 					strtoupper( $status['driver'] ?? 'unknown' )
 				),
@@ -48,17 +48,17 @@ class SiteHealth {
 		}
 
 		return [
-			'label'       => sprintf( __( 'Search Engine (%s) is unreachable', 'wp-turbo-search' ), strtoupper( $driver ) ),
+			'label'       => sprintf( __( 'Search Engine (%s) is unreachable', 'turbo-search' ), strtoupper( $driver ) ),
 			'status'      => 'critical',
 			'badge'       => [
-				'label' => __( 'Turbo Search', 'wp-turbo-search' ),
+				'label' => __( 'Turbo Search', 'turbo-search' ),
 				'color' => 'red',
 			],
-			'description' => __( 'The configured search engine is unreachable. Searches may be falling back to MySQL.', 'wp-turbo-search' ),
+			'description' => __( 'The configured search engine is unreachable. Searches may be falling back to MySQL.', 'turbo-search' ),
 			'actions'     => sprintf(
 				'<a href="%s">%s</a>',
 				esc_url( admin_url( 'admin.php?page=wpts-settings' ) ),
-				__( 'Check Engine Settings', 'wp-turbo-search' )
+				__( 'Check Engine Settings', 'turbo-search' )
 			),
 			'test'        => 'wpts_engine_status',
 		];
@@ -77,30 +77,30 @@ class SiteHealth {
 
 		if ( $total_pub === 0 || $count >= ( $total_pub * 0.9 ) ) {
 			return [
-				'label'       => sprintf( __( 'Search index is up to date (%d of %d posts)', 'wp-turbo-search' ), $count, $total_pub ),
+				'label'       => sprintf( __( 'Search index is up to date (%d of %d posts)', 'turbo-search' ), $count, $total_pub ),
 				'status'      => 'good',
 				'badge'       => [
-					'label' => __( 'Turbo Search', 'wp-turbo-search' ),
+					'label' => __( 'Turbo Search', 'turbo-search' ),
 					'color' => 'blue',
 				],
-				'description' => __( 'Search index coverage is optimal.', 'wp-turbo-search' ),
+				'description' => __( 'Search index coverage is optimal.', 'turbo-search' ),
 				'actions'     => '',
 				'test'        => 'wpts_index_coverage',
 			];
 		}
 
 		return [
-			'label'       => sprintf( __( 'Search index needs updating (%d of %d posts indexed)', 'wp-turbo-search' ), $count, $total_pub ),
+			'label'       => sprintf( __( 'Search index needs updating (%d of %d posts indexed)', 'turbo-search' ), $count, $total_pub ),
 			'status'      => 'recommended',
 			'badge'       => [
-				'label' => __( 'Turbo Search', 'wp-turbo-search' ),
+				'label' => __( 'Turbo Search', 'turbo-search' ),
 				'color' => 'orange',
 			],
-			'description' => __( 'Some published posts may not be in the search index yet. Run a re-index to update search results.', 'wp-turbo-search' ),
+			'description' => __( 'Some published posts may not be in the search index yet. Run a re-index to update search results.', 'turbo-search' ),
 			'actions'     => sprintf(
 				'<a href="%s">%s</a>',
 				esc_url( admin_url( 'admin.php?page=wpts-index' ) ),
-				__( 'Go to Index Manager', 'wp-turbo-search' )
+				__( 'Go to Index Manager', 'turbo-search' )
 			),
 			'test'        => 'wpts_index_coverage',
 		];

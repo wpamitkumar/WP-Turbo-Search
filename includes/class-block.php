@@ -89,7 +89,7 @@ class Block {
 			$pt_list[] = [ 'slug' => $pt->name, 'label' => $pt->label ];
 		}
 		if ( ! empty( $settings['index_attachments'] ) && ! isset( $post_types['attachment'] ) ) {
-			$pt_list[] = [ 'slug' => 'attachment', 'label' => __( 'Media & Documents', 'wp-turbo-search' ) ];
+			$pt_list[] = [ 'slug' => 'attachment', 'label' => __( 'Media & Documents', 'turbo-search' ) ];
 		}
 
 		wp_localize_script(
@@ -119,7 +119,7 @@ class Block {
 	 */
 	public function render( array $attrs ): string {
 		$defaults = [
-			'placeholder'       => __( 'Search…', 'wp-turbo-search' ),
+			'placeholder'       => __( 'Search…', 'turbo-search' ),
 			'postType'          => '',
 			'perPage'           => 8,
 			'debounce'          => 200,

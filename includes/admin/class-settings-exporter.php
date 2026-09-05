@@ -12,7 +12,7 @@ class SettingsExporter {
 
 	public static function export(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Forbidden', 'wp-turbo-search' ) );
+			wp_die( esc_html__( 'Forbidden', 'turbo-search' ) );
 		}
 
 		$export_data = [
@@ -42,21 +42,21 @@ class SettingsExporter {
 	 */
 	public static function import( array $file ): array {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return [ 'success' => false, 'message' => __( 'Permission denied.', 'wp-turbo-search' ) ];
+			return [ 'success' => false, 'message' => __( 'Permission denied.', 'turbo-search' ) ];
 		}
 
 		if ( empty( $file['tmp_name'] ) || ! is_uploaded_file( $file['tmp_name'] ) ) {
-			return [ 'success' => false, 'message' => __( 'Please choose a valid JSON file.', 'wp-turbo-search' ) ];
+			return [ 'success' => false, 'message' => __( 'Please choose a valid JSON file.', 'turbo-search' ) ];
 		}
 
 		$raw = file_get_contents( $file['tmp_name'] );
 		if ( ! $raw ) {
-			return [ 'success' => false, 'message' => __( 'Could not read uploaded file.', 'wp-turbo-search' ) ];
+			return [ 'success' => false, 'message' => __( 'Could not read uploaded file.', 'turbo-search' ) ];
 		}
 
 		$data = json_decode( $raw, true );
 		if ( ! is_array( $data ) || empty( $data['settings'] ) ) {
-			return [ 'success' => false, 'message' => __( 'Invalid backup file format.', 'wp-turbo-search' ) ];
+			return [ 'success' => false, 'message' => __( 'Invalid backup file format.', 'turbo-search' ) ];
 		}
 
 		// Save settings
@@ -73,7 +73,7 @@ class SettingsExporter {
 
 		return [
 			'success' => true,
-			'message' => __( 'Settings imported successfully!', 'wp-turbo-search' ),
+			'message' => __( 'Settings imported successfully!', 'turbo-search' ),
 		];
 	}
 }

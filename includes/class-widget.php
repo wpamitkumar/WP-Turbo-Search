@@ -9,8 +9,8 @@ class WPTS_Search_Widget extends \WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'wpts_search_widget',
-			__( 'Turbo Search Bar', 'wp-turbo-search' ),
-			[ 'description' => __( 'Instant search bar with multi-post-type support, debounce, voice search, and theme options.', 'wp-turbo-search' ) ]
+			__( 'Turbo Search Bar', 'turbo-search' ),
+			[ 'description' => __( 'Instant search bar with multi-post-type support, debounce, voice search, and theme options.', 'turbo-search' ) ]
 		);
 	}
 
@@ -26,7 +26,7 @@ class WPTS_Search_Widget extends \WP_Widget {
 		}
 
 		echo wpts_build_search_html( [
-			'placeholder'     => $instance['placeholder'] ?? __( 'Search…', 'wp-turbo-search' ),
+			'placeholder'     => $instance['placeholder'] ?? __( 'Search…', 'turbo-search' ),
 			'theme'           => $instance['theme'] ?? 'light',
 			'post_type'       => $post_type,
 			'per_page'        => (int) ( $instance['per_page'] ?? 8 ),
@@ -53,8 +53,8 @@ class WPTS_Search_Widget extends \WP_Widget {
 	}
 
 	public function form( $instance ): void {
-		$title       = $instance['title'] ?? __( 'Search', 'wp-turbo-search' );
-		$placeholder = $instance['placeholder'] ?? __( 'Search…', 'wp-turbo-search' );
+		$title       = $instance['title'] ?? __( 'Search', 'turbo-search' );
+		$placeholder = $instance['placeholder'] ?? __( 'Search…', 'turbo-search' );
 		$theme       = $instance['theme'] ?? 'light';
 		$layout      = $instance['layout'] ?? 'list';
 		$per_page    = (int) ( $instance['per_page'] ?? 8 );
@@ -66,15 +66,15 @@ class WPTS_Search_Widget extends \WP_Widget {
 			: [];
 		?>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Widget Title:', 'wp-turbo-search' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Widget Title:', 'turbo-search' ); ?></label>
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
 		</p>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'placeholder' ) ); ?>"><?php esc_html_e( 'Placeholder Text:', 'wp-turbo-search' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'placeholder' ) ); ?>"><?php esc_html_e( 'Placeholder Text:', 'turbo-search' ); ?></label>
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'placeholder' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'placeholder' ) ); ?>" type="text" value="<?php echo esc_attr( $placeholder ); ?>">
 		</p>
 		<p>
-			<label><strong><?php esc_html_e( 'Filter by Post Types (leave blank for all):', 'wp-turbo-search' ); ?></strong></label><br>
+			<label><strong><?php esc_html_e( 'Filter by Post Types (leave blank for all):', 'turbo-search' ); ?></strong></label><br>
 			<?php foreach ( $public_pts as $pt ) : ?>
 				<label style="display:inline-block; margin-right:10px; margin-top:4px;">
 					<input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'post_type' ) ); ?>[]" value="<?php echo esc_attr( $pt->name ); ?>" <?php checked( in_array( $pt->name, $selected_pts, true ) ); ?>>
@@ -83,24 +83,24 @@ class WPTS_Search_Widget extends \WP_Widget {
 			<?php endforeach; ?>
 		</p>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>"><?php esc_html_e( 'Results Layout:', 'wp-turbo-search' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>"><?php esc_html_e( 'Results Layout:', 'turbo-search' ); ?></label>
 			<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'layout' ) ); ?>">
-				<option value="list" <?php selected( $layout, 'list' ); ?>><?php esc_html_e( 'List View', 'wp-turbo-search' ); ?></option>
-				<option value="grid" <?php selected( $layout, 'grid' ); ?>><?php esc_html_e( 'Grid Cards', 'wp-turbo-search' ); ?></option>
-				<option value="card" <?php selected( $layout, 'card' ); ?>><?php esc_html_e( 'Compact Card', 'wp-turbo-search' ); ?></option>
+				<option value="list" <?php selected( $layout, 'list' ); ?>><?php esc_html_e( 'List View', 'turbo-search' ); ?></option>
+				<option value="grid" <?php selected( $layout, 'grid' ); ?>><?php esc_html_e( 'Grid Cards', 'turbo-search' ); ?></option>
+				<option value="card" <?php selected( $layout, 'card' ); ?>><?php esc_html_e( 'Compact Card', 'turbo-search' ); ?></option>
 			</select>
 		</p>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'theme' ) ); ?>"><?php esc_html_e( 'Theme Style:', 'wp-turbo-search' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'theme' ) ); ?>"><?php esc_html_e( 'Theme Style:', 'turbo-search' ); ?></label>
 			<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'theme' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'theme' ) ); ?>">
-				<option value="light" <?php selected( $theme, 'light' ); ?>><?php esc_html_e( 'Light (Default)', 'wp-turbo-search' ); ?></option>
-				<option value="dark" <?php selected( $theme, 'dark' ); ?>><?php esc_html_e( 'Dark', 'wp-turbo-search' ); ?></option>
-				<option value="minimal" <?php selected( $theme, 'minimal' ); ?>><?php esc_html_e( 'Minimalist', 'wp-turbo-search' ); ?></option>
-				<option value="glass" <?php selected( $theme, 'glass' ); ?>><?php esc_html_e( 'Glassmorphism', 'wp-turbo-search' ); ?></option>
+				<option value="light" <?php selected( $theme, 'light' ); ?>><?php esc_html_e( 'Light (Default)', 'turbo-search' ); ?></option>
+				<option value="dark" <?php selected( $theme, 'dark' ); ?>><?php esc_html_e( 'Dark', 'turbo-search' ); ?></option>
+				<option value="minimal" <?php selected( $theme, 'minimal' ); ?>><?php esc_html_e( 'Minimalist', 'turbo-search' ); ?></option>
+				<option value="glass" <?php selected( $theme, 'glass' ); ?>><?php esc_html_e( 'Glassmorphism', 'turbo-search' ); ?></option>
 			</select>
 		</p>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'per_page' ) ); ?>"><?php esc_html_e( 'Results per page:', 'wp-turbo-search' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'per_page' ) ); ?>"><?php esc_html_e( 'Results per page:', 'turbo-search' ); ?></label>
 			<input class="tiny-text" id="<?php echo esc_attr( $this->get_field_id( 'per_page' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'per_page' ) ); ?>" type="number" step="1" min="1" max="50" value="<?php echo esc_attr( (string) $per_page ); ?>" size="3">
 		</p>
 		<?php

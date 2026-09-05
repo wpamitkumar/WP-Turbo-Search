@@ -282,8 +282,8 @@ When **network-activated**:
 ## File Structure
 
 ```
-wp-turbo-search/
-├── wp-turbo-search.php          ← Plugin header, constants, autoloader, boot
+turbo-search/
+├── turbo-search.php          ← Plugin header, constants, autoloader, boot
 ├── uninstall.php                ← Cleanup on plugin deletion
 ├── includes/
 │   ├── class-core.php           ← Singleton: wires all subsystems
@@ -315,7 +315,7 @@ wp-turbo-search/
 ├── templates/
 │   └── shortcode.php            ← [wpts_search] shortcode + WP widget
 └── languages/
-    └── wp-turbo-search.pot      ← Translation template
+    └── turbo-search.pot      ← Translation template
 ```
 
 ---

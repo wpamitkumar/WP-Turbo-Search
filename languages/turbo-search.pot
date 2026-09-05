@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Turbo Search 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-turbo-search\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/turbo-search\n"
 "Last-Translator: Amitkumar Dudhat <amit000790@gmail.com>\n"
 "Language-Team: English <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -12,14 +12,14 @@ msgstr ""
 "POT-Creation-Date: 2026-09-04 12:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-Turbo-Search POT Generator 1.0\n"
-"X-Domain: wp-turbo-search\n"
+"X-Domain: turbo-search\n"
 
 #. Plugin Name of the plugin
 msgid "WP Turbo Search"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://wordpress.org/plugins/wp-turbo-search"
+msgid "https://wordpress.org/plugins/turbo-search"
 msgstr ""
 
 #. Description of the plugin
@@ -664,7 +664,7 @@ msgstr ""
 msgid "WooCommerce is not active."
 msgstr ""
 
-#: wp-turbo-search.php:40
+#: turbo-search.php:40
 msgid "WP Turbo Search requires PHP %s or higher."
 msgstr ""
 
@@ -672,17 +672,17 @@ msgstr ""
 msgid "WP Turbo Search: Network"
 msgstr ""
 
-#: wp-turbo-search.php:116
-#: wp-turbo-search.php:127
-#: wp-turbo-search.php:138
-#: wp-turbo-search.php:150
-#: wp-turbo-search.php:159
-#: wp-turbo-search.php:173
-#: wp-turbo-search.php:185
-#: wp-turbo-search.php:197
-#: wp-turbo-search.php:208
-#: wp-turbo-search.php:220
-#: wp-turbo-search.php:231
+#: turbo-search.php:116
+#: turbo-search.php:127
+#: turbo-search.php:138
+#: turbo-search.php:150
+#: turbo-search.php:159
+#: turbo-search.php:173
+#: turbo-search.php:185
+#: turbo-search.php:197
+#: turbo-search.php:208
+#: turbo-search.php:220
+#: turbo-search.php:231
 msgid "You do not have permission to do this."
 msgstr ""
 

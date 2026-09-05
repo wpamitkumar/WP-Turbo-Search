@@ -13,7 +13,7 @@ class Export {
 	 */
 	public static function stream_csv( int $days = 30, string $mode = 'searches' ): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Forbidden', 'wp-turbo-search' ) );
+			wp_die( esc_html__( 'Forbidden', 'turbo-search' ) );
 		}
 
 		$filename = sprintf( 'wpts-analytics-%s-%s.csv', $mode, gmdate( 'Y-m-d' ) );

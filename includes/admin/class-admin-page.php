@@ -17,8 +17,8 @@ class Page {
 
 	public function register_menus(): void {
 		add_menu_page(
-			__( 'Turbo Search', 'wp-turbo-search' ),
-			__( 'Turbo Search', 'wp-turbo-search' ),
+			__( 'Turbo Search', 'turbo-search' ),
+			__( 'Turbo Search', 'turbo-search' ),
 			'manage_options',
 			'wpts-dashboard',
 			[ $this, 'render_react_app_page' ],
@@ -29,8 +29,8 @@ class Page {
 		// 1. Dashboard
 		add_submenu_page(
 			'wpts-dashboard',
-			__( 'Dashboard & Analytics', 'wp-turbo-search' ),
-			__( 'Dashboard', 'wp-turbo-search' ),
+			__( 'Dashboard & Analytics', 'turbo-search' ),
+			__( 'Dashboard', 'turbo-search' ),
 			'manage_options',
 			'wpts-dashboard',
 			[ $this, 'render_react_app_page' ]
@@ -39,8 +39,8 @@ class Page {
 		// 2. Index Manager
 		add_submenu_page(
 			'wpts-dashboard',
-			__( 'Index Manager', 'wp-turbo-search' ),
-			__( 'Index Manager', 'wp-turbo-search' ),
+			__( 'Index Manager', 'turbo-search' ),
+			__( 'Index Manager', 'turbo-search' ),
 			'manage_options',
 			'wpts-index',
 			[ $this, 'render_react_app_page' ]
@@ -49,8 +49,8 @@ class Page {
 		// 3. Settings
 		add_submenu_page(
 			'wpts-dashboard',
-			__( 'Search Settings', 'wp-turbo-search' ),
-			__( 'Settings', 'wp-turbo-search' ),
+			__( 'Search Settings', 'turbo-search' ),
+			__( 'Settings', 'turbo-search' ),
 			'manage_options',
 			'wpts-settings',
 			[ $this, 'render_react_app_page' ]
@@ -59,8 +59,8 @@ class Page {
 		// 4. Cache
 		add_submenu_page(
 			'wpts-dashboard',
-			__( 'Cache Settings', 'wp-turbo-search' ),
-			__( 'Cache', 'wp-turbo-search' ),
+			__( 'Cache Settings', 'turbo-search' ),
+			__( 'Cache', 'turbo-search' ),
 			'manage_options',
 			'wpts-cache',
 			[ $this, 'render_react_app_page' ]
@@ -69,8 +69,8 @@ class Page {
 		// 5. Tracking and Analytics
 		add_submenu_page(
 			'wpts-dashboard',
-			__( 'Tracking & Search Log', 'wp-turbo-search' ),
-			__( 'Tracking and Analytics', 'wp-turbo-search' ),
+			__( 'Tracking & Search Log', 'turbo-search' ),
+			__( 'Tracking and Analytics', 'turbo-search' ),
 			'manage_options',
 			'wpts-tracking',
 			[ $this, 'render_react_app_page' ]
@@ -79,8 +79,8 @@ class Page {
 		// 6. Dev Hooks
 		add_submenu_page(
 			'wpts-dashboard',
-			__( 'Developer Hooks Reference', 'wp-turbo-search' ),
-			__( 'Dev Hooks', 'wp-turbo-search' ),
+			__( 'Developer Hooks Reference', 'turbo-search' ),
+			__( 'Dev Hooks', 'turbo-search' ),
 			'manage_options',
 			'wpts-hooks',
 			[ $this, 'render_react_app_page' ]
@@ -89,8 +89,8 @@ class Page {
 		// 7. Documentation
 		add_submenu_page(
 			'wpts-dashboard',
-			__( 'Documentation & User Guide', 'wp-turbo-search' ),
-			__( 'Documentation', 'wp-turbo-search' ),
+			__( 'Documentation & User Guide', 'turbo-search' ),
+			__( 'Documentation', 'turbo-search' ),
 			'manage_options',
 			'wpts-docs',
 			[ $this, 'render_react_app_page' ]
@@ -141,7 +141,7 @@ class Page {
 			'initial_tab'    => $this->get_current_page_tab( $current_page ),
 		] );
 
-		wp_set_script_translations( 'wpts-admin-app', 'wp-turbo-search', WPTS_DIR . 'languages' );
+		wp_set_script_translations( 'wpts-admin-app', 'turbo-search', WPTS_DIR . 'languages' );
 	}
 
 	private function get_current_page_tab( string $page ): string {
@@ -158,14 +158,14 @@ class Page {
 
 	public function render_react_app_page(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to view this page.', 'wp-turbo-search' ) );
+			wp_die( esc_html__( 'You do not have permission to view this page.', 'turbo-search' ) );
 		}
 		?>
 		<div class="wrap wpts-wrap">
 			<div id="wpts-admin-root">
 				<div style="padding: 40px; text-align: center; color: #64748b;">
 					<span class="spinner is-active" style="float: none; margin: 0 auto 10px;"></span>
-					<p><?php esc_html_e( 'Loading WP Turbo Search React Application…', 'wp-turbo-search' ); ?></p>
+					<p><?php esc_html_e( 'Loading WP Turbo Search React Application…', 'turbo-search' ); ?></p>
 				</div>
 			</div>
 		</div>
@@ -173,7 +173,7 @@ class Page {
 	}
 
 	public function add_settings_link( array $links ): array {
-		$settings_link = '<a href="' . esc_url( admin_url( 'admin.php?page=wpts-settings' ) ) . '">' . esc_html__( 'Settings', 'wp-turbo-search' ) . '</a>';
+		$settings_link = '<a href="' . esc_url( admin_url( 'admin.php?page=wpts-settings' ) ) . '">' . esc_html__( 'Settings', 'turbo-search' ) . '</a>';
 		array_unshift( $links, $settings_link );
 		return $links;
 	}

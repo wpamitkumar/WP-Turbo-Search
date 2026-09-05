@@ -54,7 +54,7 @@ class Trending {
 		$a = shortcode_atts( [
 			'limit' => 6,
 			'days'  => 7,
-			'title' => __( '🔥 Trending:', 'wp-turbo-search' ),
+			'title' => __( '🔥 Trending:', 'turbo-search' ),
 		], $atts, 'wpts_trending' );
 
 		$trending = self::get_trending( absint( $a['limit'] ), absint( $a['days'] ) );

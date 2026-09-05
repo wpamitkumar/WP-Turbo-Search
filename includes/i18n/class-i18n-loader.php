@@ -10,7 +10,7 @@ class Loader {
 
 	public function load(): void {
 		load_plugin_textdomain(
-			'wp-turbo-search',
+			'turbo-search',
 			false,
 			dirname( WPTS_BASENAME ) . '/languages'
 		);
@@ -25,9 +25,9 @@ class Loader {
 	public function register_wpml_strings(): void {
 		if ( ! function_exists( 'icl_register_string' ) ) return;
 
-		icl_register_string( 'wp-turbo-search', 'search_placeholder', __( 'Search…', 'wp-turbo-search' ) );
-		icl_register_string( 'wp-turbo-search', 'no_results',         __( 'No results found.', 'wp-turbo-search' ) );
-		icl_register_string( 'wp-turbo-search', 'results_count',      __( '%d results', 'wp-turbo-search' ) );
+		icl_register_string( 'turbo-search', 'search_placeholder', __( 'Search…', 'turbo-search' ) );
+		icl_register_string( 'turbo-search', 'no_results',         __( 'No results found.', 'turbo-search' ) );
+		icl_register_string( 'turbo-search', 'results_count',      __( '%d results', 'turbo-search' ) );
 
 		/**
 		 * Action: wpts_register_wpml_strings
